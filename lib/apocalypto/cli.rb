@@ -33,6 +33,30 @@ class ApocalyptoApp::CLI
         country.each.with_index(1) do |country, i|
             puts "#{i}. #{country.name} - #{country.difficulty}"
         end
+        prompt_area_selection
+    end
+
+    def prompt_area_selection
+        divider
+        new_line
+        puts "Please enter a number to select your starting area."
+        escape
+
+        get_user_input = 0 ? exit : selected_area(input)
+    end
+
+    def get_user_input
+        input = gets.strip.to_i
+        if input > country.size
+            puts "Invalid selection: No country exists."
+            puts "Please input a valid number."
+            return get_user_input
+        end
+        input
+    end
+
+    def selected_area input
+
     end
 
     def country
