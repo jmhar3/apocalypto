@@ -14,8 +14,8 @@ class ApocalyptoApp::CLI
         input = gets.strip.downcase
         if input == "exit"
             exit
-        elsif
-            user = User.new input
+        else
+            player = ApocalyptoApp::Player.new(name: input)
             list_countries
         end
     end

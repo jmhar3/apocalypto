@@ -1,5 +1,5 @@
 module ApocalyptoApp
-    def exit
+    def escape
         puts "Enter any key to escape the apocalypse."
     end
     
