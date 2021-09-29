@@ -40,7 +40,7 @@ class ApocalyptoApp::Country
         new_line
         puts "It's your task to destroy blah blah blah"
         new_line
-        puts "Enter [continue] to prepare for battle."
+        puts "Enter [y] to prepare for battle."
         puts "Input any key to exit."
         input = gets.strip.downcase
         input == "continue" ?  ApocalyptoApp::Player.all[-1].player_stats : exit

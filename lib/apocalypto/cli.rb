@@ -3,7 +3,8 @@ class ApocalyptoApp::CLI
 
     def initialize
         ApocalyptoApp::Scraper.new.get_countries
-        # ApocalyptoApp::Scraper.new.get_supplies
+        # ApocalyptoApp::Scraper.new.get_food
+        ApocalyptoApp::Scraper.new.get_weapons
     end
 
     def start
@@ -43,7 +44,7 @@ class ApocalyptoApp::CLI
         escape
 
         input = get_user_input
-        input == 0 ? exit : selected_area(input)
+        input == 0 ? exit : country[input - 1].welcome
     end
 
     def get_user_input
@@ -54,13 +55,6 @@ class ApocalyptoApp::CLI
             return get_user_input
         end
         input
-    end
-
-    def selected_area input
-        country[input - 1].welcome
-        divider
-        new_line
-        ApocalyptoApp::Player.all[-1].player_stats
     end
 
     def country

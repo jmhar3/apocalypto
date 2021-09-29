@@ -54,6 +54,6 @@ class ApocalyptoApp::Player
     end
 
     # def purchase_item item
-    #     item.type == "food" ? @food << item : @weapons << item
+    #     item.type == "food" ? health += item.value : damage += item.value
     # end
 end
