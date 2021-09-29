@@ -1,6 +1,11 @@
 class ApocalyptoApp::CLI
     include ApocalyptoApp
 
+    def initialize
+        ApocalyptoApp::Scraper.new.get_countries
+        # ApocalyptoApp::Scraper.new.get_supplies
+    end
+
     def start
         system("clear")
         puts "Welcome to Apocalypto"
@@ -21,5 +26,6 @@ class ApocalyptoApp::CLI
     end
 
     def list_countries
+
     end
 end

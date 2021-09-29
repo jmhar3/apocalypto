@@ -25,3 +25,14 @@ module ApocalyptoApp
 end
 
 require_relative '../config/environment.rb'
+require 'pry'
+require 'nokogiri'
+require 'open-uri'
+
+require_relative '../lib/apocalypto/cli.rb'
+require_relative '../lib/apocalypto/country.rb'
+require_relative '../lib/apocalypto/player.rb'
+require_relative '../lib/apocalypto/zombie.rb'
+require_relative '../lib/apocalypto/scraper.rb'
+require_relative '../lib/apocalypto/supply.rb'
+require_relative '../lib/apocalypto_app.rb'
