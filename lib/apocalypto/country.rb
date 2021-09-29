@@ -5,16 +5,14 @@ class ApocalyptoApp::Country
     def initialize name:, infected: 0
         @name = name
         @infected = infected
-        @difficulty = nil
         if name == "" || name == "^^[1]testing capacity^^" || name == "UTC"
         else
             @@all << self
         end
-        difficulty
     end
 
     def difficulty
-        i = @infected.to_i
+        i = @infected.split(",").join.to_i
         if i > 100000
             "extreme"
         elsif i < 100000 && i > 50000
