@@ -1,4 +1,5 @@
 class ApocalyptoApp::Country
+    include ApocalyptoApp
     attr_accessor :name, :infected
     @@all = []
 
@@ -35,6 +36,14 @@ class ApocalyptoApp::Country
         system("clear")
         puts "Welcome, #{ApocalyptoApp::Player.all[-1].name}, to the distopian future we call #{name}."
         ApocalyptoApp::Zombie.total infected
+        divider
+        new_line
+        puts "It's your task to destroy blah blah blah"
+        new_line
+        puts "Enter [continue] to prepare for battle."
+        puts "Input any key to exit."
+        input = gets.strip.downcase
+        input == "continue" ?  ApocalyptoApp::Player.all[-1].player_stats : exit
     end
 
     

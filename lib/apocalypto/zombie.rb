@@ -58,12 +58,7 @@ class ApocalyptoApp::Zombie
             puts "Want to keep fighting?"
             puts "Input [y] to continue."
             input = gets.strip.downcase
-            if input == "y"
-                system("clear")
-                player.player_stats
-            else
-                exit
-            end
+            input == "y" ? player.player_stats : exit
         else
             player.health -= all[-1].damage
             # hit_zombie

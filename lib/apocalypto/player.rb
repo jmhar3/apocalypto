@@ -5,7 +5,7 @@ class ApocalyptoApp::Player
 
     @@all = []
 
-    def initialize name:, health: 50, money: 1000, damage: 6
+    def initialize name:, health: 50, money: 1000, damage: 9
         @name = name
         @health = health
         @damage = damage
@@ -19,6 +19,7 @@ class ApocalyptoApp::Player
     end
 
     def player_stats
+        system("clear")
         if @health < 30
             oh_no
             puts "Uh oh - looks like you're low on health."
@@ -31,9 +32,9 @@ class ApocalyptoApp::Player
             input == "shop" ? ApocalyptoApp::Shop.access_shop : exit
         else
             current_supply
-            puts "You're ready for battle, #{self.name}! ALONZEE"
-            new_line
+            puts "You're ready for battle, #{self.name}! ALONZEE!"
             divider
+            new_line
             puts "Input [fight] to start a battle."
             puts "Input [shop] to gear up"
             escape
