@@ -10,6 +10,10 @@ class ApocalyptoApp::Zombie
         @@all << self
     end
 
+    def self.all
+        @@all
+    end
+
     def self.generate_zombies infected
         infected.times do |i|
             if ((i % 10) == 0)
@@ -20,5 +24,13 @@ class ApocalyptoApp::Zombie
                 self.new id: i
             end
         end
+    end
+
+    def self.total infected
+        puts "There are currently #{infected} zombies plaguing the lands."
+    end
+
+    def self.spawn_zombie
+        puts "hello world"
     end
 end

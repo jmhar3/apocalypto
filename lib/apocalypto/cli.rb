@@ -58,6 +58,7 @@ class ApocalyptoApp::CLI
 
     def selected_area input
         country[input - 1].welcome
+        ApocalyptoApp::Player.all[-1].player_stats
     end
 
     def country
