@@ -11,6 +11,10 @@ class ApocalyptoApp::Country
         end
     end
 
+    def self.all
+        @@all
+    end
+
     def difficulty
         i = @infected.split(",").join.to_i
         if i > 100000
@@ -26,7 +30,10 @@ class ApocalyptoApp::Country
         end
     end
 
-    def self.all
-        @@all
+    def welcome
+        system("clear")
+        # zombies = self.quantity
+        puts "Welcome #{ApocalyptoApp::Player.all[-1].name} to #{name}."
+        # ApocalyptoApp::Zombie.total
     end
 end

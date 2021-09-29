@@ -20,7 +20,7 @@ class ApocalyptoApp::CLI
         if input == "exit"
             exit
         else
-            player = ApocalyptoApp::Player.new(name: input)
+            ApocalyptoApp::Player.new(name: input)
             list_countries
         end
     end
@@ -42,7 +42,8 @@ class ApocalyptoApp::CLI
         puts "Please enter a number to select your starting area."
         escape
 
-        get_user_input = 0 ? exit : selected_area(input)
+        input = get_user_input
+        input == 0 ? exit : selected_area(input)
     end
 
     def get_user_input
@@ -56,7 +57,7 @@ class ApocalyptoApp::CLI
     end
 
     def selected_area input
-
+        country[input - 1].welcome
     end
 
     def country
