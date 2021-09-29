@@ -26,6 +26,16 @@ class ApocalyptoApp::CLI
     end
 
     def list_countries
+        system("clear")
+        puts "Choose your starting area:"
+        new_line
+        divider
+        country.each.with_index(1) do |country, i|
+            puts "#{i}. #{country.name}"
+        end
+    end
 
+    def country
+        ApocalyptoApp::Country.all
     end
 end
