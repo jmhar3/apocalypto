@@ -4,7 +4,7 @@ class ApocalyptoApp::Country
 
     def initialize name:, infected: 0
         @name = name
-        @infected = infected
+        @infected = infected.split(",").join.to_i
         if name == "" || name == "^^[1]testing capacity^^" || name == "UTC"
         else
             @@all << self
@@ -16,7 +16,7 @@ class ApocalyptoApp::Country
     end
 
     def difficulty
-        i = @infected.split(",").join.to_i
+        i = @infected
         if i > 100000
             "extreme"
         elsif i < 100000 && i > 50000
@@ -31,9 +31,12 @@ class ApocalyptoApp::Country
     end
 
     def welcome
+        ApocalyptoApp::Zombie.generate_zombies infected
+
         system("clear")
-        # zombies = self.quantity
         puts "Welcome #{ApocalyptoApp::Player.all[-1].name} to #{name}."
         # ApocalyptoApp::Zombie.total
     end
+
+    
 end
