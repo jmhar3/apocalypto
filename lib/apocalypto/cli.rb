@@ -31,7 +31,7 @@ class ApocalyptoApp::CLI
         new_line
         divider
         country.each.with_index(1) do |country, i|
-            puts "#{i}. #{country.name}"
+            puts "#{i}. #{country.name} - #{country.difficulty}"
         end
     end
 
