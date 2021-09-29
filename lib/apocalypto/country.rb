@@ -32,7 +32,6 @@ class ApocalyptoApp::Country
 
     def welcome
         ApocalyptoApp::Zombie.generate_zombies infected.split(",").join.to_i
-
         system("clear")
         puts "Welcome, #{ApocalyptoApp::Player.all[-1].name}, to the distopian future we call #{name}."
         ApocalyptoApp::Zombie.total infected

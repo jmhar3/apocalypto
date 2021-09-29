@@ -28,7 +28,7 @@ class ApocalyptoApp::Scraper
 
         doc = get_country_page
         countries = doc.css('table#thetable tr').map do |country|
-            print "●・○・●"
+            print "● "
             name = country.css('td:nth-child(1) a').text.strip
             infected = country.css('td:nth-child(2) span').text.strip
             {name: name, infected: infected}
