@@ -8,7 +8,7 @@ module ApocalyptoApp
     end
 
     def divider
-        puts "══════════ ∘◦ ❈ ◦∘ ══════════"
+        puts "═════════ ∘◦ ❈ ◦∘ ═════════"
     end
 
     def zombie
