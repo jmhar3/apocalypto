@@ -52,8 +52,4 @@ class ApocalyptoApp::Player
     def current_supply
         puts "You currently have #{self.health} health and do #{self.damage} damage."
     end
-
-    # def purchase_item item
-    #     item.type == "food" ? health += item.value : damage += item.value
-    # end
 end
