@@ -15,6 +15,14 @@ module ApocalyptoApp
         puts "‿︵‿︵(ಥ﹏ಥ)‿︵‿︵"
     end
 
+    def hit_zombie
+        puts "‿︵‿︵(ಥ﹏☆)‿︵‿︵"
+    end
+
+    def dead_zombie
+        puts "‿︵‿︵(☆﹏☆)‿︵‿︵"
+    end
+
     def oh_no
         puts "ᵒʰ(⑉・̆⌓・̆⑉)ɴᴏ"
     end
