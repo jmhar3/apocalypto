@@ -1,6 +1,8 @@
 module ApocalyptoApp::Utility
     def fight_shop_exit
-        puts "Enter [fight] to kill zombies or [shop] to peruse the wares."
+        divider
+        puts "Enter [fight] to kill zombies"
+        puts "Enter [shop] to peruse the wares."
         escape
         input = gets.strip.downcase
         if input == "fight"

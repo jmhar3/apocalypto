@@ -56,7 +56,6 @@ class ApocalyptoApp::Supply
         item.type == "revive" ? (puts "+1 Life, #{item.value}HP | $#{item.cost}") : (puts "+#{item.value} #{item.type} | $#{item.cost}")
         divider
         player.wallet
-        new_line
         player.money >= item.cost ? sufficient_funds(item) : insufficient_funds
     end
 
@@ -69,6 +68,7 @@ class ApocalyptoApp::Supply
 
     def self.insufficient_funds
         puts "You don't have enough money."
+        puts "Kill zombies to earn money or find something cheaper."
         fight_shop_exit
     end
 
@@ -84,7 +84,6 @@ class ApocalyptoApp::Supply
         system("clear")
         puts "Congratulation! You are the proud new owner of #{purchased_item_name item.name}."
         player.current_supply
-        divider
         fight_shop_exit
     end
 

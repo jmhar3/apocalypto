@@ -30,13 +30,13 @@ class ApocalyptoApp::Zombie
         when "childs play"
             ten ? self.new(id: i, health: 50, damage: 10, money: 50) : self.new(id: i)
         when "easy"
-            ten ? self.new(id: i, health: 100, damage: 30, money: 150) : self.new(id: i, health: 50, damage: 10, money: 50)
+            ten ? self.new(id: i, health: 100, damage: 40, money: 150) : self.new(id: i, health: 50, damage: 20, money: 50)
         when "medium"
-            ten ? self.new(id: i, health: 300, damage: 30, money: 500) : self.new(id: i, health: 100, damage: 30, money: 150)
+            ten ? self.new(id: i, health: 300, damage: 80, money: 500) : self.new(id: i, health: 100, damage: 40, money: 150)
         when "hard"
-            ten ? self.new(id: i, health: 1000, damage: 100, money: 1000) : self.new(id: i, health: 300, damage: 30, money: 500)
+            ten ? self.new(id: i, health: 1000, damage: 160, money: 1000) : self.new(id: i, health: 300, damage: 80, money: 500)
         when "extreme"
-            ten ? self.new(id: i, health: 2500, damage: 300, money: 3000) : self.new(id: i, health: 1000, damage: 100, money: 1000)
+            ten ? self.new(id: i, health: 2500, damage: 320, money: 3000) : self.new(id: i, health: 1000, damage: 160, money: 1000)
         end
     end
 
@@ -64,7 +64,7 @@ class ApocalyptoApp::Zombie
         if all[-1].health >= 1
             survive_zombie
             if player.health > 0
-                puts "You took #{all[-1]} damage. #{player.health} health remaining."
+                puts "You took #{all[-1].damage} damage. #{player.health} health remaining."
                 attack
                 if player.revive == 0
                     gameover
@@ -88,11 +88,7 @@ class ApocalyptoApp::Zombie
         # REMOVE 1 INFECTED FROM COUNTRY
         dead_zombie
         puts "Congrats! You defeated the zombie and gained $#{all[-1].money}."
-        divider
-        puts "Want to keep fighting?"
-        puts "Input [y] to continue."
-        input = gets.strip.downcase
-        input == "y" ? player.player_stats : exit
+        fight_shop_exit
     end
 
     def self.survive_zombie
