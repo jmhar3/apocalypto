@@ -1,4 +1,5 @@
-class ApocalyptoApp::Zombie < ApocalyptoApp::Utility
+class ApocalyptoApp::Zombie
+    extend ApocalyptoApp::Utility
 
     attr_accessor :health, :damage, :money, :country
 
@@ -60,25 +61,25 @@ class ApocalyptoApp::Zombie < ApocalyptoApp::Utility
     def self.hit
         system("clear")
         zombie_damage
-        if all[-1].health <= 0
-            defeat_zombie
-        else
+        if all[-1].health >= 1
             survive_zombie
             if player.health > 0
-                puts "You have #{player.health} health left."
-                new_line
+                puts "You took #{all[-1]} damage. #{player.health} health remaining."
                 attack
-            elsif player.revive == 0
-                gameover
-            else
-                gameover_revive
+                if player.revive == 0
+                    gameover
+                else
+                    gameover_revive
+                end
             end
+        else
+            defeat_zombie
         end
     end
 
     def self.zombie_damage
-        damage = all[-1].health - player.damage
-        all[-1].health = (damage < 0 ? 0 : damage)
+        damaged = all[-1].health - player.damage
+        all[-1].health = (damaged < 0 ? 0 : damaged)
     end
 
     def self.defeat_zombie
@@ -95,11 +96,12 @@ class ApocalyptoApp::Zombie < ApocalyptoApp::Utility
     end
 
     def self.survive_zombie
-        player.health -= all[-1].damage
+        damage = player.health - all[-1].damage
+        player.health = (damage < 0 ? 0 : damage)
         hit_zombie
         puts "Zombie took #{player.damage} damage. #{all[-1].health} health remaining."
         divider
-        hit
+        player.health == 0 ? dazed : ouch
         puts "Zombie used bite. It was very effective."
     end
 

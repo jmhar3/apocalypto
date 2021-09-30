@@ -1,11 +1,10 @@
-class ApocalyptoApp::CLI < ApocalyptoApp::Utility
+class ApocalyptoApp::CLI
+    include ApocalyptoApp::Utility
 
     @@all = []
 
     def initialize
-        ApocalyptoApp::Supply.new name: "Resurrection Potion", type: "revive", value: 50, cost: "800", desc: "A mystical potion to bring you back from the depths of hell."
-        ApocalyptoApp::Supply.new name: "apple", type: "health", value: 10, cost: "10", desc: "A mystical apple"
-        ApocalyptoApp::Supply.new name: "stick", type: "damage", value: 10, cost: "10", desc: "A mystical stick"
+        starter_supplies
         ApocalyptoApp::Scraper.new.get_countries
         ApocalyptoApp::Scraper.new.get_weapons
         @@all << self
@@ -13,6 +12,18 @@ class ApocalyptoApp::CLI < ApocalyptoApp::Utility
 
     def self.all
         @@all
+    end
+
+    def starter_supplies
+        ApocalyptoApp::Supply.new name: "Resurrection Potion", type: "revive", value: 50, cost: "800",
+            desc: "A mystical potion to bring you back from the depths of hell."
+        ApocalyptoApp::Supply.new name: "Red Bull", type: "health", value: 10, cost: "100", desc: "A mystical apple"
+        ApocalyptoApp::Supply.new name: "Crowbar", type: "damage", value: 30, cost: "300", desc: "A mystical stick"
+        ApocalyptoApp::Supply.new name: "Zippo", type: "damage", value: 10, cost: "100", desc: "A mystical stick"
+        ApocalyptoApp::Supply.new name: "Kitchen Knife", type: "damage", value: 5, cost: "50", desc: "A mystical stick"
+        ApocalyptoApp::Supply.new name: "Canned Tuna", type: "health", value: 30, cost: "60", desc: "A mystical stick"
+        ApocalyptoApp::Supply.new name: "SPAM", type: "health", value: 45, cost: "90", desc: "A mystical stick"
+        ApocalyptoApp::Supply.new name: "Aerosol Deoderant", type: "health", value: 20, cost: "40", desc: "A mystical stick"
     end
 
     def start

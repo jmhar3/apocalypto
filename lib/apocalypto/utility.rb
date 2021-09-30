@@ -1,4 +1,4 @@
-class ApocalyptoApp::Utility
+module ApocalyptoApp::Utility
     def fight_shop_exit
         puts "Enter [fight] to kill zombies or [shop] to peruse the wares."
         escape
@@ -51,11 +51,11 @@ class ApocalyptoApp::Utility
     end
 
     def dazed
-        puts "ᵒʰ(⑉☆｡☆⑉)ɴᴏ"
+        puts "(⑉☆｡☆⑉)"
         new_line
     end
 
-    def hit
+    def ouch
         puts "(ﾉ>｡☆)ﾉ"
         new_line
     end

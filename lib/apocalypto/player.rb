@@ -1,10 +1,11 @@
-class ApocalyptoApp::Player < ApocalyptoApp::Utility
+class ApocalyptoApp::Player
+    include ApocalyptoApp::Utility
 
     attr_accessor :name, :health, :money, :damage, :revive
 
     @@all = []
 
-    def initialize name:, health: 50, money: 1000, damage: 9, revive: 1
+    def initialize name:, health: 50, money: 500, damage: 9, revive: 1
         @name = name
         @health = health
         @damage = damage

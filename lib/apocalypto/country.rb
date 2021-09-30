@@ -1,4 +1,5 @@
-class ApocalyptoApp::Country < ApocalyptoApp::Utility
+class ApocalyptoApp::Country
+    include ApocalyptoApp::Utility
     
     attr_accessor :name, :infected
     @@all = []
@@ -69,6 +70,6 @@ class ApocalyptoApp::Country < ApocalyptoApp::Utility
         puts "Enter [y] to prepare for battle."
         escape
         input = gets.strip.downcase
-        input == "y" ?  ApocalyptoApp::Player.all[-1].player_stats : exit
+        input == "y" ?  ApocalyptoApp::Player.all[-1].player_stats : ApocalyptoApp::CLI.list_countries
     end
 end

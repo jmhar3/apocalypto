@@ -1,4 +1,5 @@
-class ApocalyptoApp::Supply < ApocalyptoApp::Utility
+class ApocalyptoApp::Supply
+    extend ApocalyptoApp::Utility
     attr_accessor :name, :type, :value, :cost, :desc
     @@all = []
 
@@ -83,7 +84,7 @@ class ApocalyptoApp::Supply < ApocalyptoApp::Utility
         system("clear")
         puts "Congratulation! You are the proud new owner of #{purchased_item_name item.name}."
         player.current_supply
-        new_line
+        divider
         fight_shop_exit
     end
 

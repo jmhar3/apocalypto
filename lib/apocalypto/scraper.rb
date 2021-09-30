@@ -13,7 +13,8 @@ class ApocalyptoApp::Scraper
     end
 
     def get_countries
-        puts "Download game data"
+        system("clear")
+        puts "Download game data..."
 
         doc = get_page COVID_URL
         countries = doc.css('table#thetable tr').map do |country|
