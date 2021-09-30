@@ -61,6 +61,9 @@ class ApocalyptoApp::Scraper
     # end
 
     def make_countries countries
-        countries.map{|country| ApocalyptoApp::Country.new country}
+        countries.map do |country|
+            new_country = ApocalyptoApp::Country.new country
+            zombies = ApocalyptoApp::Zombie.generate_zombies new_country.infected.split(",").join.to_i, new_country.difficulty, new_country
+        end
     end
 end

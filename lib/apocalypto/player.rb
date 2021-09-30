@@ -5,11 +5,13 @@ class ApocalyptoApp::Player
 
     @@all = []
 
-    def initialize name:, health: 50, money: 1000, damage: 9
+    def initialize name:, health: 50, money: 1000, damage: 9, revive: 1
         @name = name
         @health = health
         @damage = damage
         @money = money
+        @revive = revive
+        @items = []
 
         @@all << self
     end

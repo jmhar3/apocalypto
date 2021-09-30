@@ -21,7 +21,7 @@ class ApocalyptoApp::Zombie
         infected.times do |i|
             ten = ((i % 10) == 0)
             zombie = zombie_by_difficulty i, ten, difficulty
-            zombie.country = country
+            country.add_zombie zombie
         end
     end
 
