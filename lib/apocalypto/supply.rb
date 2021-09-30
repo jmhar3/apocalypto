@@ -73,18 +73,21 @@ class ApocalyptoApp::Supply
     end
 
     def self.successful_purchase item
-        if item.type == "revive"
-            player.revive += 1
-        elsif item.type == "health"
-            player.health += item.value
-        else
-            player.damage += item.value
-        end
+        item_effect item
         player.money -= item.cost
         system("clear")
         puts "Congratulation! You are the proud new owner of #{purchased_item_name item.name}."
         player.current_supply
         fight_shop_exit
+    end
+
+    def item_effect item
+        if item.type == "damage"
+            player.damage += item.value
+        else
+            player.health += item.value
+        end
+        player.add_item item
     end
 
     def self.purchased_item_name item

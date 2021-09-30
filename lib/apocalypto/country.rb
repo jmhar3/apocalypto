@@ -67,9 +67,9 @@ class ApocalyptoApp::Country
         new_line
         puts "Kill zombies to earn currency so you can gear up in preparation for the super zombies!"
         new_line
-        puts "Enter [y] to prepare for battle."
+        puts "Enter [begin] to prepare for battle."
         escape
         input = gets.strip.downcase
-        input == "y" ?  ApocalyptoApp::Player.all[-1].player_stats : ApocalyptoApp::CLI.list_countries
+        input == "begin" ?  ApocalyptoApp::Player.all[-1].player_stats : ApocalyptoApp::CLI.list_countries
     end
 end

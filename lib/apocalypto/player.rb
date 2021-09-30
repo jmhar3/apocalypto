@@ -11,12 +11,17 @@ class ApocalyptoApp::Player
         @damage = damage
         @money = money
         @revive = revive
+        @items = []
 
         @@all << self
     end
 
     def self.all
         @@all
+    end
+  
+    def add_item item
+      @items << item
     end
 
     def player_stats
@@ -30,7 +35,7 @@ class ApocalyptoApp::Player
 
     def low_health
         oh_no
-        puts "Uh oh - looks like you're low on health."
+        uh_oh
         current_supply
         divider
         puts "Input [shop] to stock up."
@@ -43,8 +48,6 @@ class ApocalyptoApp::Player
         player_char
         current_supply
         puts "You're ready for battle, #{self.name}! ALONZEE!"
-        new_line
-        divider
         fight_shop_exit
     end
 

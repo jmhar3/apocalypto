@@ -17,6 +17,10 @@ module ApocalyptoApp::Utility
     def escape
         puts "Enter any key to choose a new area."
     end
+
+    def uh_oh
+        puts "Uh oh - looks like you're low on health."
+    end
     
     def new_line
         puts ""

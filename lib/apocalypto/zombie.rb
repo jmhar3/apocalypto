@@ -61,11 +61,13 @@ class ApocalyptoApp::Zombie
     def self.hit
         system("clear")
         zombie_damage
-        if all[-1].health >= 1
+        if all[-1].health > 0
             survive_zombie
             if player.health > 0
                 puts "You took #{all[-1].damage} damage. #{player.health} health remaining."
+                uh_oh if player.health < all[-1].damage && all[-1].health > player.damage
                 attack
+            else
                 if player.revive == 0
                     gameover
                 else
@@ -96,9 +98,9 @@ class ApocalyptoApp::Zombie
         player.health = (damage < 0 ? 0 : damage)
         hit_zombie
         puts "Zombie took #{player.damage} damage. #{all[-1].health} health remaining."
+        puts "Zombie used bite. It was very effective."
         divider
         player.health == 0 ? dazed : ouch
-        puts "Zombie used bite. It was very effective."
     end
 
     def self.gameover
