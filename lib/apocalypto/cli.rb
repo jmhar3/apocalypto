@@ -1,12 +1,13 @@
 class ApocalyptoApp::CLI
     include ApocalyptoApp
+    extend ApocalyptoApp
 
     @@all = []
 
     def initialize
         ApocalyptoApp::Supply.new name: "Resurrection Potion", type: "revive", value: 800
-        ApocalyptoApp::Supply.new name: "apple", type: "food", value: 10
-        ApocalyptoApp::Supply.new name: "stick", type: "weapon", value: 10
+        ApocalyptoApp::Supply.new name: "apple", type: "health", value: 10
+        ApocalyptoApp::Supply.new name: "stick", type: "damage", value: 10
         ApocalyptoApp::Scraper.new.get_countries
         # ApocalyptoApp::Scraper.new.get_food
         # ApocalyptoApp::Scraper.new.get_weapons

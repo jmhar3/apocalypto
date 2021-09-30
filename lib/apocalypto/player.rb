@@ -1,5 +1,6 @@
 class ApocalyptoApp::Player
     include ApocalyptoApp
+    extend ApocalyptoApp
 
     attr_accessor :name, :health, :money, :damage, :revive
 
@@ -52,8 +53,8 @@ class ApocalyptoApp::Player
     end
 
     def drink_revive
-        revive -= 1
-        health = 50
+        @revive -= 1
+        @health = 50
         player_stats
     end
 

@@ -1,5 +1,6 @@
 class ApocalyptoApp::Supply
     include ApocalyptoApp
+    extend ApocalyptoApp
     attr_accessor :name, :type, :value
 
     @@all = []
@@ -18,8 +19,8 @@ class ApocalyptoApp::Supply
     def self.access_shop
         system("clear")
         puts "Stock up on supplies:"
-        # new_line
-        # divider
+        new_line
+        divider
         all.each.with_index(1) do |supply, i|
             if supply.type == "revive"
                 puts "#{i}. #{supply.name} +1 Life - $#{supply.value}"
@@ -31,10 +32,10 @@ class ApocalyptoApp::Supply
     end
 
     def self.prompt_area_selection
-        # divider
-        # new_line
+        divider
+        new_line
         puts "Enter a number to purchase an item."
-        # escape
+        escape
 
         input = get_user_input
         input == 0 ? exit : purchase_item(all[input - 1])
@@ -63,7 +64,7 @@ class ApocalyptoApp::Supply
     def self.sufficient_funds item
         if item.type == "revive"
             player.revive += 1
-        elsif item.type == "food"
+        elsif item.type == "health"
             player.health += item.value
         else
             player.damage += item.value

@@ -1,5 +1,6 @@
 class ApocalyptoApp::Zombie
     include ApocalyptoApp
+    extend ApocalyptoApp
 
     attr_accessor :health, :damage, :money, :country
 
@@ -20,25 +21,26 @@ class ApocalyptoApp::Zombie
     def self.generate_zombies infected, difficulty, country
         infected.times do |i|
             ten = ((i % 10) == 0)
-            zombie = zombie_by_difficulty i, ten, difficulty
-            country.add_zombie zombie
+            case difficulty
+            when "childsplay"
+                ten ? self.new(id: i, health: 50, damage: 10, money: 50) : self.new(id: i)
+            when "easy"
+                ten ? self.new(id: i, health: 100, damage: 30, money: 150) : self.new(id: i, health: 50, damage: 10, money: 50)
+            when "medium"
+                ten ? self.new(id: i, health: 300, damage: 30, money: 500) : self.new(id: i, health: 100, damage: 30, money: 150)
+            when "hard"
+                ten ? self.new(id: i, health: 1000, damage: 100, money: 1000) : self.new(id: i, health: 300, damage: 30, money: 500)
+            when "extreme"
+                ten ? self.new(id: i, health: 2500, damage: 300, money: 3000) : self.new(id: i, health: 1000, damage: 100, money: 1000)
+            end
+            # zombie = zombie_by_difficulty i, difficulty
+            # country.add_zombie zombie
         end
     end
 
-    def self.zombie_by_difficulty i, ten, difficulty
-        case difficulty
-        when "childsplay"
-            ten ? self.new(id: i, health: 50, damage: 10, money: 50) : self.new(id: i)
-        when "easy"
-            ten ? self.new(id: i, health: 100, damage: 30, money: 150) : self.new(id: i, health: 50, damage: 10, money: 50)
-        when "medium"
-            ten ? self.new(id: i, health: 300, damage: 30, money: 500) : self.new(id: i, health: 100, damage: 30, money: 150)
-        when "hard"
-            ten ? self.new(id: i, health: 1000, damage: 100, money: 1000) : self.new(id: i, health: 300, damage: 30, money: 500)
-        when "extreme"
-            ten ? self.new(id: i, health: 2500, damage: 300, money: 3000) : self.new(id: i, health: 1000, damage: 100, money: 1000)
-        end
-    end
+    # def self.zombie_by_difficulty i, ten, difficulty
+
+    # end
 
     def self.total infected
         puts "There are currently #{infected} zombies plaguing the lands."
@@ -47,13 +49,13 @@ class ApocalyptoApp::Zombie
     def self.spawn_zombie
         system("clear")
         puts "A wild zombie appears!"
-        # divider
-        # new_line
-        # zombie
+        new_line
+        zombie
         puts "Zombie: #{all[-1].health} health | #{all[-1].damage} damage"
         puts "Quick! Hit it with your weapon."
-        # divider
-        # new_line
+        divider
+        new_line
+        oh_no
         puts "#{player.name}: #{player.health} health | #{player.damage} damage"
         attack
     end
@@ -67,7 +69,7 @@ class ApocalyptoApp::Zombie
             survive_zombie
             if player.health > 0
                 puts "You have #{player.health} health left."
-                # new_line
+                new_line
                 attack
             elsif player.revive == 0
                 gameover
@@ -86,10 +88,10 @@ class ApocalyptoApp::Zombie
         player.money += all[-1].money
         all.pop
         # REMOVE 1 INFECTED FROM COUNTRY
-        # dead_zombie
+        dead_zombie
         puts "Congrats! You defeated the zombie."
-        # divider
-        # new_line
+        divider
+        new_line
         puts "Want to keep fighting?"
         puts "Input [y] to continue."
         input = gets.strip.downcase
@@ -98,26 +100,26 @@ class ApocalyptoApp::Zombie
 
     def self.survive_zombie
         player.health -= all[-1].damage
-        # hit_zombie
+        hit_zombie
         puts "Zombie took #{player.damage} damage. #{all[-1].health} health remaining."
-        # divider
-        # new_line
-        # hit
+        divider
+        new_line
+        hit
         puts "Zombie used bite. It was very effective."
     end
 
     def self.gameover
-        # dazed
+        dazed
         puts "GAME OVER!"
         puts "Input [start] for a new game."
-        # escape
+        escape
 
         input = gets.strip.downcase
         input == "start" ? ApocalyptoApp::CLI.new.start : exit
     end
 
     def self.gameover_revive
-        # dazed
+        dazed
         puts "You've been knocked out!"
         puts "Enter [revive] to drink potion."
         puts "Input any key for a new game"

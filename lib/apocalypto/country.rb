@@ -1,5 +1,7 @@
 class ApocalyptoApp::Country
     include ApocalyptoApp
+    extend ApocalyptoApp
+    
     attr_accessor :name, :infected
     @@all = []
 
