@@ -4,23 +4,18 @@ require 'nokogiri'
 
 class ApocalyptoApp::Scraper
     COVID_URL = "https://en.wikipedia.org/wiki/Template:COVID-19_pandemic_data/Per_capita"
-    FOOD_URL = "search?q=premade+meals&catId=976759_976794_5614446_1797065&sort=best_seller"
-    WEAPONS_URL = "https://shootersdelight.com.au/product-category/online-gun-store/"
+    # FOOD_URL = ""
+    # WEAPONS_URL = "https://shootersdelight.com.au/product-category/online-gun-store/"
 
     def get_country_page(url = COVID_URL)
         uri = URI.parse(url)
         Nokogiri::HTML(uri.open)
     end
 
-    def get_food_page(url = WALMART_URL+FOOD_URL)
-        uri = URI.parse(url)
-        puts Nokogiri::HTML(uri.open)
-    end
-
-    def get_weapon_page(url = WEAPONS_URL)
-        uri = URI.parse(url)
-        puts Nokogiri::HTML(uri.open)
-    end
+    # def get_weapon_page(url = WEAPONS_URL)
+    #     uri = URI.parse(url)
+    #     puts Nokogiri::HTML(uri.open)
+    # end
 
     def get_countries
         puts "Download game data"

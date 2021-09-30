@@ -21,32 +21,33 @@ class ApocalyptoApp::Player
     def player_stats
         system("clear")
         if @health < 30
-            oh_no
-            puts "Uh oh - looks like you're low on health."
-            current_supply
-            new_line
-            divider
-            puts "Input [shop] to stock up."
-            escape
-            input = gets.strip.downcase
-            input == "shop" ? ApocalyptoApp::Supply.access_shop : exit
+            low_health
         else
-            current_supply
-            puts "You're ready for battle, #{self.name}! ALONZEE!"
-            divider
-            new_line
-            puts "Input [fight] to start a battle."
-            puts "Input [shop] to gear up"
-            escape
-            input = gets.strip.downcase
-            if input == "fight"
-                ApocalyptoApp::Zombie.spawn_zombie
-            elsif input == "shop"
-                ApocalyptoApp::Supply.access_shop
-            else
-                exit
-            end
+            battle_ready
         end
+    end
+
+    def low_health
+        oh_no
+        puts "Uh oh - looks like you're low on health."
+        current_supply
+        new_line
+        divider
+        puts "Input [shop] to stock up."
+        escape
+        input = gets.strip.downcase
+        input == "shop" ? ApocalyptoApp::Supply.access_shop : exit
+    end
+
+    def battle_ready
+        current_supply
+        puts "You're ready for battle, #{self.name}! ALONZEE!"
+        new_line
+        divider
+        new_line
+        puts "Input [fight] to start a battle."
+        puts "Input [shop] to gear up"
+        fight_shop_exit
     end
 
     def drink_revive

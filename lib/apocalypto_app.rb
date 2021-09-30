@@ -1,4 +1,16 @@
 module ApocalyptoApp
+    def fight_shop_exit
+        escape
+        input = gets.strip.downcase
+        if input == "fight"
+            ApocalyptoApp::Zombie.spawn_zombie
+        elsif input == "shop"
+            ApocalyptoApp::Supply.access_shop
+        else
+            exit
+        end
+    end
+
     def escape
         puts "Enter any key to escape the apocalypse."
     end

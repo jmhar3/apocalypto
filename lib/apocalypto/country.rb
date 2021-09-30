@@ -32,7 +32,7 @@ class ApocalyptoApp::Country
     end
 
     def welcome
-        ApocalyptoApp::Zombie.generate_zombies infected.split(",").join.to_i, difficulty
+        ApocalyptoApp::Zombie.generate_zombies infected.split(",").join.to_i, difficulty, self
         system("clear")
         if infected.split(",").join.to_i == 0
             no_zombie_welcome

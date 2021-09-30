@@ -49,33 +49,24 @@ class ApocalyptoApp::Supply
     def self.purchase_item item
         system("clear")
         if player.money > item.value
-            item.type == "food" ? player.health += item.value : player.damage += item.value
-            player.money -= item.value
-            puts "Congratulation! You are the proud new owner of #{purchased_item_name item.name}."
-            player.current_supply
-            puts "Enter [fight] to kill more zombies or [shop] to keep browsing."
-            # escape
-            input = gets.strip.downcase
-            if input == "fight"
-                ApocalyptoApp::Zombie.spawn_zombie
-            elsif input == "shop"
-                access_shop
-            else
-                exit
-            end
+            sufficient_funds item
         else
-            puts "You don't have enough money."
-            puts "Enter [fight] to kill more zombies or [shop] to find something cheaper."
-            # escape
-            input = gets.strip.downcase
-            if input == "fight"
-                ApocalyptoApp::Zombie.spawn_zombie
-            elsif input == "shop"
-                access_shop
-            else
-                exit
-            end
+            insufficient_funds
         end
+        fight_shop_exit
+    end
+
+    def self.sufficient_funds item
+        item.type == "food" ? player.health += item.value : player.damage += item.value
+        player.money -= item.value
+        puts "Congratulation! You are the proud new owner of #{purchased_item_name item.name}."
+        player.current_supply
+        puts "Enter [fight] to kill more zombies or [shop] to keep browsing."
+    end
+
+    def self.insufficient_funds
+        puts "You don't have enough money."
+        puts "Enter [fight] to kill more zombies or [shop] to find something cheaper."
     end
 
     def self.purchased_item_name item
