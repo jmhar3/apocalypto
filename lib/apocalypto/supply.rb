@@ -1,11 +1,9 @@
-class ApocalyptoApp::Supply
-    extend ApocalyptoApp
+class ApocalyptoApp::Supply < ApocalyptoApp::Utility
     attr_accessor :name, :type, :value, :cost, :desc
-
     @@all = []
 
     def initialize name:, type:, value:, cost:, desc:
-        @name = name
+        @name = name.downcase.titleize
         @type = type
         @value = value.to_i
         @cost = cost.to_i
@@ -51,12 +49,10 @@ class ApocalyptoApp::Supply
         system("clear")
         puts "#{item.desc}"
         new_line
+        item.type == "damage" ? (puts "( -_-)︻╦̵̵͇̿̿̿̿══╤─") : (puts "( -_-)旦~")
+        new_line
         puts "#{item.name}"
-        if item.type == "revive"
-            puts "+1 Life, #{item.value}HP | $#{item.cost}"
-        else
-            puts "+#{item.value} #{item.type} | $#{item.cost}"
-        end
+        item.type == "revive" ? (puts "+1 Life, #{item.value}HP | $#{item.cost}") : (puts "+#{item.value} #{item.type} | $#{item.cost}")
         divider
         player.wallet
         new_line

@@ -3,6 +3,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'active_support/core_ext/string/inflections'
 
+require_relative '../lib/apocalypto/utility.rb'
 require_relative '../lib/apocalypto/cli.rb'
 require_relative '../lib/apocalypto/country.rb'
 require_relative '../lib/apocalypto/player.rb'

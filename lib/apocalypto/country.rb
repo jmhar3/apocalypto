@@ -1,5 +1,4 @@
-class ApocalyptoApp::Country
-    include ApocalyptoApp
+class ApocalyptoApp::Country < ApocalyptoApp::Utility
     
     attr_accessor :name, :infected
     @@all = []

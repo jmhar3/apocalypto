@@ -1,5 +1,4 @@
-class ApocalyptoApp::Zombie
-    extend ApocalyptoApp
+class ApocalyptoApp::Zombie < ApocalyptoApp::Utility
 
     attr_accessor :health, :damage, :money, :country
 

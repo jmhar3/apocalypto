@@ -1,5 +1,4 @@
-class ApocalyptoApp::CLI
-    include ApocalyptoApp
+class ApocalyptoApp::CLI < ApocalyptoApp::Utility
 
     @@all = []
 

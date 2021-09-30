@@ -1,6 +1,4 @@
-class ApocalyptoApp::Player
-    include ApocalyptoApp
-    extend ApocalyptoApp
+class ApocalyptoApp::Player < ApocalyptoApp::Utility
 
     attr_accessor :name, :health, :money, :damage, :revive
 
