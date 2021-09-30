@@ -33,7 +33,6 @@ class ApocalyptoApp::Player
         oh_no
         puts "Uh oh - looks like you're low on health."
         current_supply
-        new_line
         divider
         puts "Input [shop] to stock up."
         escape
@@ -43,14 +42,10 @@ class ApocalyptoApp::Player
 
     def battle_ready
         player_char
-        new_line
         current_supply
         puts "You're ready for battle, #{self.name}! ALONZEE!"
         new_line
         divider
-        new_line
-        puts "Input [fight] to start a battle."
-        puts "Input [shop] to gear up"
         fight_shop_exit
     end
 
@@ -62,5 +57,9 @@ class ApocalyptoApp::Player
 
     def current_supply
         puts "You currently have #{self.health} health, do #{self.damage} damage and have $#{self.money}."
+    end
+
+    def wallet
+        puts "You currently have $#{self.money}."
     end
 end

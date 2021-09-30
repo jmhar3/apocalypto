@@ -1,14 +1,15 @@
 class ApocalyptoApp::Supply
     extend ApocalyptoApp
-    attr_accessor :name, :type, :value, :cost
+    attr_accessor :name, :type, :value, :cost, :desc
 
     @@all = []
 
-    def initialize name:, type:, value:, cost:
+    def initialize name:, type:, value:, cost:, desc:
         @name = name
         @type = type
         @value = value.to_i
         @cost = cost.to_i
+        @desc = desc
         @@all << self
     end
 
@@ -19,49 +20,62 @@ class ApocalyptoApp::Supply
     def self.access_shop
         system("clear")
         puts "Stock up on supplies:"
-        divider
         new_line
         all.each.with_index(1) do |supply, i|
-            if supply.type == "revive"
-                puts "#{i}. $#{supply.cost} - #{supply.name} | +1 Life - #{supply.value}HP"
-            else
-                puts "#{i}. $#{supply.cost} - #{supply.name} | +#{supply.value} #{supply.type}"
-            end
+            puts "#{i}. $#{supply.cost} - #{supply.name}"
         end
-        prompt_area_selection
-    end
-
-    def self.prompt_area_selection
         divider
-        new_line
-        puts "Enter a number to purchase an item."
-        escape
-
-        input = get_user_input
-        input == 0 ? exit : purchase_item(all[input - 1])
+        player.wallet
+        prompt_item_selection
     end
 
-    def self.get_user_input
+    def self.prompt_item_selection
+        new_line
+        puts "Enter a number to learn more."
+        puts "Input any key to prepare for battle"
+        input = get_player_input
+        input == 0 ? player.player_stats : view_item(all[input - 1])
+    end
+
+    def self.get_player_input
         input = gets.strip.to_i
         if input > all.size
             puts "Invalid selection: No item exists."
             puts "Please input a valid number."
-            return get_user_input
+            return get_player_input
         end
         input
     end
 
-    def self.purchase_item item
+    def self.view_item item
         system("clear")
-        if player.money >= item.cost
-            sufficient_funds item
+        puts "#{item.desc}"
+        new_line
+        puts "#{item.name}"
+        if item.type == "revive"
+            puts "+1 Life, #{item.value}HP | $#{item.cost}"
         else
-            insufficient_funds
+            puts "+#{item.value} #{item.type} | $#{item.cost}"
         end
-        fight_shop_exit
+        divider
+        player.wallet
+        new_line
+        player.money >= item.cost ? sufficient_funds(item) : insufficient_funds
     end
 
     def self.sufficient_funds item
+        puts "Enter [buy] to purchase #{item.name}"
+        puts "Input any key to return to shop"
+        input = gets.strip.downcase
+        input == "buy" ? successful_purchase(item) : access_shop
+    end
+
+    def self.insufficient_funds
+        puts "You don't have enough money."
+        fight_shop_exit
+    end
+
+    def self.successful_purchase item
         if item.type == "revive"
             player.revive += 1
         elsif item.type == "health"
@@ -70,15 +84,11 @@ class ApocalyptoApp::Supply
             player.damage += item.value
         end
         player.money -= item.cost
+        system("clear")
         puts "Congratulation! You are the proud new owner of #{purchased_item_name item.name}."
         player.current_supply
         new_line
-        puts "Enter [fight] to kill more zombies or [shop] to keep browsing."
-    end
-
-    def self.insufficient_funds
-        puts "You don't have enough money."
-        puts "Enter [fight] to kill more zombies or [shop] to find something cheaper."
+        fight_shop_exit
     end
 
     def self.purchased_item_name item

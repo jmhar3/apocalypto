@@ -49,14 +49,12 @@ class ApocalyptoApp::Zombie
         puts "A wild zombie appears!"
         new_line
         zombie
-        new_line
         puts "Zombie: #{all[-1].health} health | #{all[-1].damage} damage"
-        puts "Quick! Hit it with your weapon."
         divider
-        new_line
         oh_no
-        new_line
         puts "#{player.name}: #{player.health} health | #{player.damage} damage"
+        new_line
+        puts "Quick! Hit it with your weapon."
         attack
     end
 
@@ -90,7 +88,6 @@ class ApocalyptoApp::Zombie
         # REMOVE 1 INFECTED FROM COUNTRY
         dead_zombie
         puts "Congrats! You defeated the zombie and gained $#{all[-1].money}."
-        new_line
         divider
         puts "Want to keep fighting?"
         puts "Input [y] to continue."
@@ -103,7 +100,6 @@ class ApocalyptoApp::Zombie
         hit_zombie
         puts "Zombie took #{player.damage} damage. #{all[-1].health} health remaining."
         divider
-        new_line
         hit
         puts "Zombie used bite. It was very effective."
     end
@@ -129,6 +125,7 @@ class ApocalyptoApp::Zombie
     end
 
     def self.attack
+        new_line
         puts "Input [hit] to attack the zombie."
         puts "Input [run] to run away."
         input = gets.strip.downcase

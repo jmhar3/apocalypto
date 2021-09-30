@@ -4,9 +4,9 @@ class ApocalyptoApp::CLI
     @@all = []
 
     def initialize
-        ApocalyptoApp::Supply.new name: "Resurrection Potion", type: "revive", value: 50, cost: "800"
-        ApocalyptoApp::Supply.new name: "apple", type: "health", value: 10, cost: "10"
-        ApocalyptoApp::Supply.new name: "stick", type: "damage", value: 10, cost: "10"
+        ApocalyptoApp::Supply.new name: "Resurrection Potion", type: "revive", value: 50, cost: "800", desc: "A mystical potion to bring you back from the depths of hell."
+        ApocalyptoApp::Supply.new name: "apple", type: "health", value: 10, cost: "10", desc: "A mystical apple"
+        ApocalyptoApp::Supply.new name: "stick", type: "damage", value: 10, cost: "10", desc: "A mystical stick"
         ApocalyptoApp::Scraper.new.get_countries
         ApocalyptoApp::Scraper.new.get_weapons
         @@all << self
@@ -20,7 +20,6 @@ class ApocalyptoApp::CLI
         system("clear")
         puts "Welcome to Apocalypto"
         divider
-        new_line
         puts "It's the end of days. A plague has taken over the world, turning people into vicious, flesh eating zombies. The world as you know it is over. Your job now? Survive."
         new_line
         puts "Enter your name to begin"
@@ -39,7 +38,6 @@ class ApocalyptoApp::CLI
         system("clear")
         puts "Choose your starting area:"
         new_line
-        divider
         country.each.with_index(1) do |country, i|
             puts "#{i}. #{country.name} - #{country.difficulty}"
         end
@@ -48,7 +46,6 @@ class ApocalyptoApp::CLI
 
     def prompt_area_selection
         divider
-        new_line
         puts "Please enter a number to select your starting area."
         escape
 

@@ -53,7 +53,6 @@ class ApocalyptoApp::Country
         puts "Welcome, #{ApocalyptoApp::Player.all[-1].name}, to the oasis we call #{name}."
         puts "Zombies haven't yet reached these lands."
         divider
-        new_line
         puts "Enter [y] to choose another country."
         escape
         input = gets.strip.downcase
@@ -64,7 +63,6 @@ class ApocalyptoApp::Country
         puts "Welcome, #{ApocalyptoApp::Player.all[-1].name}, to the distopian future we call #{name}."
         ApocalyptoApp::Zombie.total infected
         divider
-        new_line
         puts "Society as we know it is in shambles. Fear has taken hold of #{name}. The people are busy hiding, dying or fighting amongst themselves. You alone are left to defend and destroy."
         new_line
         puts "Kill zombies to earn currency so you can gear up in preparation for the super zombies!"
