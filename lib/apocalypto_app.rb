@@ -27,6 +27,10 @@ module ApocalyptoApp
         puts "ᵒʰ(⑉・̆⌓・̆⑉)ɴᴏ"
     end
 
+    def dazed
+        puts "ᵒʰ(⑉☆｡☆⑉)ɴᴏ"
+    end
+
     def hit
         puts "(ﾉ>｡☆)ﾉ"
     end

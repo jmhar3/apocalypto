@@ -32,19 +32,36 @@ class ApocalyptoApp::Country
     end
 
     def welcome
-        ApocalyptoApp::Zombie.generate_zombies infected.split(",").join.to_i
+        ApocalyptoApp::Zombie.generate_zombies infected.split(",").join.to_i, difficulty
         system("clear")
+        if infected.split(",").join.to_i == 0
+            no_zombie_welcome
+        else
+            zombie_welcome
+        end
+    end
+
+    def no_zombie_welcome
+        puts "Welcome, #{ApocalyptoApp::Player.all[-1].name}, to the oasis we call #{name}."
+        puts "Zombies haven't yet reached these lands."
+        divider
+        new_line
+        puts "Enter [y] to choose another country."
+        escape
+        input = gets.strip.downcase
+        input == "y" ?  ApocalyptoApp::CLI.all[-1].list_countries : exit
+    end
+
+    def zombie_welcome
         puts "Welcome, #{ApocalyptoApp::Player.all[-1].name}, to the distopian future we call #{name}."
         ApocalyptoApp::Zombie.total infected
         divider
         new_line
-        puts "It's your task to destroy blah blah blah"
+        puts "Society as we know it is in shambles. Fear has taken hold of #{name}. The people are busy hiding, dying or fighting amongst themselves. You alone are left to defend and destroy."
         new_line
         puts "Enter [y] to prepare for battle."
-        puts "Input any key to exit."
+        escape
         input = gets.strip.downcase
-        input == "continue" ?  ApocalyptoApp::Player.all[-1].player_stats : exit
+        input == "y" ?  ApocalyptoApp::Player.all[-1].player_stats : exit
     end
-
-    
 end

@@ -49,21 +49,21 @@ class ApocalyptoApp::Scraper
     #     make_supplies food
     # end
 
-    def get_weapons
-        doc = get_weapon_page
-        weapons = doc.css('li.product').map do |weapon|
-            print "═"
-            name = weapon.css('h2.woocommerce-loop-product__title').text.strip
-            value = weapon.css('span.price bdi').text.strip
-            {name: name, value: value, type: "damage"}
-        end
+    # def get_weapons
+    #     doc = get_weapon_page
+    #     weapons = doc.css('li.product').map do |weapon|
+    #         print "═"
+    #         name = weapon.css('h2.woocommerce-loop-product__title').text.strip
+    #         value = weapon.css('span.price bdi').text.strip
+    #         {name: name, value: value, type: "damage"}
+    #     end
 
-        make_supplies weapons
-    end
+    #     make_supplies weapons
+    # end
 
-    def make_supplies supplies
-        supplies.map{|supply| ApocalyptoApp::Supply.new supply}
-    end
+    # def make_supplies supplies
+    #     supplies.map{|supply| ApocalyptoApp::Supply.new supply}
+    # end
 
     def make_countries countries
         countries.map{|country| ApocalyptoApp::Country.new country}

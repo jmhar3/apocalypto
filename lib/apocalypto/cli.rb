@@ -1,10 +1,19 @@
 class ApocalyptoApp::CLI
     include ApocalyptoApp
 
+    @@all = []
+
     def initialize
         ApocalyptoApp::Scraper.new.get_countries
         # ApocalyptoApp::Scraper.new.get_food
-        ApocalyptoApp::Scraper.new.get_weapons
+        # ApocalyptoApp::Scraper.new.get_weapons
+        ApocalyptoApp::Supply.new name: "apple", type: "food", value: 3
+        ApocalyptoApp::Supply.new name: "stick", type: "weapon", value: 3
+        @@all << self
+    end
+
+    def self.all
+        @@all
     end
 
     def start
@@ -17,7 +26,7 @@ class ApocalyptoApp::CLI
         puts "Enter your name to begin"
         puts "Input [exit] to escape the apocalypse."
 
-        input = gets.strip.downcase
+        input = gets.strip.downcase.capitalize
         if input == "exit"
             exit
         else
