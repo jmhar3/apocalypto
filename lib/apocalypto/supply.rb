@@ -80,7 +80,7 @@ class ApocalyptoApp::Supply
     end
 
     def self.purchased_item_name item
-        %w(a e i o u).include?(item[0].downcase) ? "an #{item}" : "a #{item}"
+        %w(a e i o u h).include?(item[0].downcase) ? "an #{item.titleize}" : "a #{item.titleize}"
     end
 
 
