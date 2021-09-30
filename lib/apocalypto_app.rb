@@ -35,6 +35,10 @@ module ApocalyptoApp
         puts "‿︵‿︵(☆﹏☆)‿︵‿︵"
     end
 
+    def player_char
+        puts "(ಸ‿ಸ)"
+    end
+
     def oh_no
         puts "ᵒʰ(⑉・̆⌓・̆⑉)ɴᴏ"
     end
@@ -49,15 +53,3 @@ module ApocalyptoApp
 end
 
 require_relative '../config/environment.rb'
-require 'pry'
-require 'nokogiri'
-require 'open-uri'
-require 'active_support/core_ext/string/inflections'
-
-require_relative '../lib/apocalypto/cli.rb'
-require_relative '../lib/apocalypto/country.rb'
-require_relative '../lib/apocalypto/player.rb'
-require_relative '../lib/apocalypto/zombie.rb'
-require_relative '../lib/apocalypto/scraper.rb'
-require_relative '../lib/apocalypto/supply.rb'
-require_relative '../lib/apocalypto_app.rb'

@@ -1,6 +1,5 @@
 class ApocalyptoApp::Country
     include ApocalyptoApp
-    extend ApocalyptoApp
     
     attr_accessor :name, :infected
     @@all = []
@@ -20,13 +19,10 @@ class ApocalyptoApp::Country
         @@all
     end
 
-    def add_zombie zombie
-        @zombies << zombie
-        zombie.country = self
-    end
-    
-    def zombies
-        @zombies
+    def self.zombies
+        ApocalyptoApp::Zombie.all.filter do |zombie|
+            zombie.country == self
+        end
     end
 
     def difficulty

@@ -1,31 +1,31 @@
 class ApocalyptoApp::Supply
-    include ApocalyptoApp
     extend ApocalyptoApp
-    attr_accessor :name, :type, :value
+    attr_accessor :name, :type, :value, :cost
 
     @@all = []
 
-    def initialize name:, type:, value:
+    def initialize name:, type:, value:, cost:
         @name = name
         @type = type
-        @value = value
+        @value = value.to_i
+        @cost = cost.to_i
         @@all << self
     end
 
     def self.all
-        @@all
+        @@all.sort_by!(&:type)
     end
 
     def self.access_shop
         system("clear")
         puts "Stock up on supplies:"
-        new_line
         divider
+        new_line
         all.each.with_index(1) do |supply, i|
             if supply.type == "revive"
-                puts "#{i}. #{supply.name} +1 Life - $#{supply.value}"
+                puts "#{i}. $#{supply.cost} - #{supply.name} | +1 Life - #{supply.value}HP"
             else
-                puts "#{i}. #{supply.name} +#{supply.value} #{supply.type} - $#{supply.value}"
+                puts "#{i}. $#{supply.cost} - #{supply.name} | +#{supply.value} #{supply.type}"
             end
         end
         prompt_area_selection
@@ -53,7 +53,7 @@ class ApocalyptoApp::Supply
 
     def self.purchase_item item
         system("clear")
-        if player.money >= item.value
+        if player.money >= item.cost
             sufficient_funds item
         else
             insufficient_funds
@@ -69,9 +69,10 @@ class ApocalyptoApp::Supply
         else
             player.damage += item.value
         end
-        player.money -= item.value
+        player.money -= item.cost
         puts "Congratulation! You are the proud new owner of #{purchased_item_name item.name}."
         player.current_supply
+        new_line
         puts "Enter [fight] to kill more zombies or [shop] to keep browsing."
     end
 

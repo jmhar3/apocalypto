@@ -42,6 +42,8 @@ class ApocalyptoApp::Player
     end
 
     def battle_ready
+        player_char
+        new_line
         current_supply
         puts "You're ready for battle, #{self.name}! ALONZEE!"
         new_line

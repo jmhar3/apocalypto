@@ -14,7 +14,7 @@ class ApocalyptoApp::Scraper
 
     def get_weapon_page(url = WEAPONS_URL)
         uri = URI.parse(url)
-        puts Nokogiri::HTML(uri.open)
+        Nokogiri::HTML(uri.open)
     end
 
     def get_countries
@@ -46,11 +46,12 @@ class ApocalyptoApp::Scraper
 
     def get_weapons
         doc = get_weapon_page
+        # binding.pry
         weapons = doc.css('li.product').map do |weapon|
             print "‿︵"
             name = weapon.css('h2.woocommerce-loop-product__title').text.strip
-            value = weapon.css('span.price bdi').text.strip
-            {name: name, value: value, type: "damage"}
+            value = weapon.css('span.price bdi').text.strip[1..-4].gsub(/,/, '')
+            {name: name, value: value[0..-2], type: "damage", cost: value}
         end
 
         make_supplies weapons

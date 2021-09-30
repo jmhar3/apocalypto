@@ -1,5 +1,4 @@
 class ApocalyptoApp::Zombie
-    include ApocalyptoApp
     extend ApocalyptoApp
 
     attr_accessor :health, :damage, :money, :country
@@ -20,27 +19,26 @@ class ApocalyptoApp::Zombie
 
     def self.generate_zombies infected, difficulty, country
         infected.times do |i|
-            ten = ((i % 10) == 0)
-            case difficulty
-            when "childsplay"
-                ten ? self.new(id: i, health: 50, damage: 10, money: 50) : self.new(id: i)
-            when "easy"
-                ten ? self.new(id: i, health: 100, damage: 30, money: 150) : self.new(id: i, health: 50, damage: 10, money: 50)
-            when "medium"
-                ten ? self.new(id: i, health: 300, damage: 30, money: 500) : self.new(id: i, health: 100, damage: 30, money: 150)
-            when "hard"
-                ten ? self.new(id: i, health: 1000, damage: 100, money: 1000) : self.new(id: i, health: 300, damage: 30, money: 500)
-            when "extreme"
-                ten ? self.new(id: i, health: 2500, damage: 300, money: 3000) : self.new(id: i, health: 1000, damage: 100, money: 1000)
-            end
-            # zombie = zombie_by_difficulty i, difficulty
-            # country.add_zombie zombie
+            zombie = zombie_by_difficulty(i, difficulty)
+            zombie.country = country
         end
     end
 
-    # def self.zombie_by_difficulty i, ten, difficulty
-
-    # end
+    def self.zombie_by_difficulty i, difficulty
+        ten = ((i % 10) == 0)
+        case difficulty
+        when "childs play"
+            ten ? self.new(id: i, health: 50, damage: 10, money: 50) : self.new(id: i)
+        when "easy"
+            ten ? self.new(id: i, health: 100, damage: 30, money: 150) : self.new(id: i, health: 50, damage: 10, money: 50)
+        when "medium"
+            ten ? self.new(id: i, health: 300, damage: 30, money: 500) : self.new(id: i, health: 100, damage: 30, money: 150)
+        when "hard"
+            ten ? self.new(id: i, health: 1000, damage: 100, money: 1000) : self.new(id: i, health: 300, damage: 30, money: 500)
+        when "extreme"
+            ten ? self.new(id: i, health: 2500, damage: 300, money: 3000) : self.new(id: i, health: 1000, damage: 100, money: 1000)
+        end
+    end
 
     def self.total infected
         puts "There are currently #{infected} zombies plaguing the lands."
@@ -51,11 +49,13 @@ class ApocalyptoApp::Zombie
         puts "A wild zombie appears!"
         new_line
         zombie
+        new_line
         puts "Zombie: #{all[-1].health} health | #{all[-1].damage} damage"
         puts "Quick! Hit it with your weapon."
         divider
         new_line
         oh_no
+        new_line
         puts "#{player.name}: #{player.health} health | #{player.damage} damage"
         attack
     end
@@ -89,9 +89,9 @@ class ApocalyptoApp::Zombie
         all.pop
         # REMOVE 1 INFECTED FROM COUNTRY
         dead_zombie
-        puts "Congrats! You defeated the zombie."
-        divider
+        puts "Congrats! You defeated the zombie and gained $#{all[-1].money}."
         new_line
+        divider
         puts "Want to keep fighting?"
         puts "Input [y] to continue."
         input = gets.strip.downcase
