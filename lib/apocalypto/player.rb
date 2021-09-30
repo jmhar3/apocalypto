@@ -11,7 +11,6 @@ class ApocalyptoApp::Player
         @damage = damage
         @money = money
         @revive = revive
-        @items = []
 
         @@all << self
     end
@@ -53,7 +52,9 @@ class ApocalyptoApp::Player
     end
 
     def drink_revive
-
+        revive -= 1
+        health = 50
+        player_stats
     end
 
     def current_supply

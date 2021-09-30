@@ -21,7 +21,11 @@ class ApocalyptoApp::Supply
         # new_line
         # divider
         all.each.with_index(1) do |supply, i|
-            puts "#{i}. #{supply.name} +#{supply.value} #{supply.type} - $#{supply.value}"
+            if supply.type == "revive"
+                puts "#{i}. #{supply.name} +1 Life - $#{supply.value}"
+            else
+                puts "#{i}. #{supply.name} +#{supply.value} #{supply.type} - $#{supply.value}"
+            end
         end
         prompt_area_selection
     end
@@ -48,7 +52,7 @@ class ApocalyptoApp::Supply
 
     def self.purchase_item item
         system("clear")
-        if player.money > item.value
+        if player.money >= item.value
             sufficient_funds item
         else
             insufficient_funds
@@ -57,7 +61,13 @@ class ApocalyptoApp::Supply
     end
 
     def self.sufficient_funds item
-        item.type == "food" ? player.health += item.value : player.damage += item.value
+        if item.type == "revive"
+            player.revive += 1
+        elsif item.type == "food"
+            player.health += item.value
+        else
+            player.damage += item.value
+        end
         player.money -= item.value
         puts "Congratulation! You are the proud new owner of #{purchased_item_name item.name}."
         player.current_supply

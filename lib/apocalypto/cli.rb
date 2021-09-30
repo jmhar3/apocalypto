@@ -4,11 +4,12 @@ class ApocalyptoApp::CLI
     @@all = []
 
     def initialize
+        ApocalyptoApp::Supply.new name: "Resurrection Potion", type: "revive", value: 800
+        ApocalyptoApp::Supply.new name: "apple", type: "food", value: 10
+        ApocalyptoApp::Supply.new name: "stick", type: "weapon", value: 10
         ApocalyptoApp::Scraper.new.get_countries
         # ApocalyptoApp::Scraper.new.get_food
         # ApocalyptoApp::Scraper.new.get_weapons
-        ApocalyptoApp::Supply.new name: "apple", type: "food", value: 3
-        ApocalyptoApp::Supply.new name: "stick", type: "weapon", value: 3
         @@all << self
     end
 

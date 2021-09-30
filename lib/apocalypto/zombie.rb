@@ -60,17 +60,11 @@ class ApocalyptoApp::Zombie
 
     def self.hit
         system("clear")
-        all[-1].health -= player.damage
+        zombie_damage
         if all[-1].health <= 0
             defeat_zombie
         else
-            player.health -= all[-1].damage
-            # hit_zombie
-            puts "Zombie took #{player.damage} damage. #{all[-1].health} health remaining."
-            # divider
-            # new_line
-            # hit
-            puts "Zombie used bite. It was very effective."
+            survive_zombie
             if player.health > 0
                 puts "You have #{player.health} health left."
                 # new_line
@@ -81,6 +75,11 @@ class ApocalyptoApp::Zombie
                 gameover_revive
             end
         end
+    end
+
+    def self.zombie_damage
+        damage = all[-1].health - player.damage
+        all[-1].health = (damage < 0 ? 0 : damage)
     end
 
     def self.defeat_zombie
@@ -95,6 +94,16 @@ class ApocalyptoApp::Zombie
         puts "Input [y] to continue."
         input = gets.strip.downcase
         input == "y" ? player.player_stats : exit
+    end
+
+    def self.survive_zombie
+        player.health -= all[-1].damage
+        # hit_zombie
+        puts "Zombie took #{player.damage} damage. #{all[-1].health} health remaining."
+        # divider
+        # new_line
+        # hit
+        puts "Zombie used bite. It was very effective."
     end
 
     def self.gameover

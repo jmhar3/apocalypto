@@ -21,11 +21,11 @@ class ApocalyptoApp::Country
     def add_zombie zombie
         @zombies << zombie
         zombie.country = self
-      end
+    end
     
-      def zombies
+    def zombies
         @zombies
-      end
+    end
 
     def difficulty
         i = @infected.split(",").join.to_i
@@ -68,6 +68,8 @@ class ApocalyptoApp::Country
         divider
         new_line
         puts "Society as we know it is in shambles. Fear has taken hold of #{name}. The people are busy hiding, dying or fighting amongst themselves. You alone are left to defend and destroy."
+        new_line
+        puts "Kill zombies to earn currency so you can gear up in preparation for the super zombies!"
         new_line
         puts "Enter [y] to prepare for battle."
         escape
