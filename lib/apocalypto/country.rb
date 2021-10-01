@@ -1,6 +1,4 @@
 class ApocalyptoApp::Country
-    include ApocalyptoApp::Utility
-    
     attr_accessor :name, :infected
     @@all = []
 
@@ -36,44 +34,5 @@ class ApocalyptoApp::Country
         elsif i < 100
             "childs play"
         end
-    end
-
-    def welcome
-        system("clear")
-        if infected.split(",").join.to_i == 0
-            no_zombie_welcome
-        else
-            zombie_welcome
-        end
-    end
-
-    def no_zombie_welcome
-        puts "Welcome, #{player.name}, to the oasis we call #{name}."
-        puts "Zombies haven't yet reached these lands."
-        divider
-        puts "Enter [y] to choose another country."
-        escape
-        input = gets.strip.downcase
-        input == "y" ?  current_game.list_countries : exit
-    end
-
-    def zombie_welcome
-        puts "Welcome, #{player.name}, to the distopian future we call #{name}."
-        ApocalyptoApp::Zombie.total infected
-        divider
-        puts "Society as we know it is in shambles. Fear has taken hold of #{name}. The people are busy hiding, dying or fighting amongst themselves. You alone are left to defend and destroy."
-        zombie_welcome_prompt
-    end
-
-    def zombie_welcome_prompt
-        new_line
-        puts "You're armed with nothing but a kitchen knife."
-        puts "Kill zombies and gear up in preparation for the super zombies!"
-        puts "If you run low on life consume items to heal."
-        new_line
-        puts "Enter [begin] to prepare for battle."
-        escape
-        input = gets.strip.downcase
-        input == "begin" ?  player.player_stats : current_game.list_countries
     end
 end

@@ -1,28 +1,4 @@
 module ApocalyptoApp::Utility
-    def fight_shop_exit
-        divider
-        puts "Enter [fight] to kill zombies"
-        puts "Enter [shop] to peruse the wares."
-        escape
-        input = gets.strip.downcase
-        if input == "fight"
-            player.country.zombies.first.spawn_zombie
-        elsif input == "shop"
-            ApocalyptoApp::Supply.access_shop
-        else
-            current_game.list_countries
-        end
-    end
-
-    def get_num_input comparison
-        input = gets.strip.to_i
-        if input > comparison
-            puts "Invalid selection. Please input a valid number."
-            get_user_input
-        end
-        input
-    end
-
     def player
         ApocalyptoApp::Player.all[-1]
     end
@@ -39,6 +15,10 @@ module ApocalyptoApp::Utility
         ApocalyptoApp::Country.all
     end
 
+    def current_zombie
+        player.country.zombies.first
+    end
+
     def escape
         puts "Enter any key to choose a new area."
     end
@@ -50,6 +30,14 @@ module ApocalyptoApp::Utility
     def uh_oh
         new_line
         puts "Uh oh - looks like you're low on health."
+    end
+
+    def current_supply
+        puts "You currently have #{player.health} health, do #{player.damage} damage and have $#{player.money}."
+    end
+
+    def wallet
+        puts "You currently have $#{player.money}."
     end
     
     def new_line

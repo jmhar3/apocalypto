@@ -1,11 +1,10 @@
 class ApocalyptoApp::Player
     include ApocalyptoApp::Utility
-
     attr_accessor :name, :health, :money, :damage, :items, :country
 
     @@all = []
 
-    def initialize name:, health: 50, money: 500, damage: 9
+    def initialize name:, health: 50, money: 500, damage: 10
         @name = name
         @health = health
         @damage = damage
@@ -19,11 +18,13 @@ class ApocalyptoApp::Player
     end
   
     def add_item item
-        @items << item
         if item.type == "damage"
-            player.damage += item.value
+            self.damage += item.value
+            @items << item
         elsif item.type == "health"
-            player.health += item.value
+            self.health += item.value
+        else
+            @items << item
         end
     end
 
@@ -35,50 +36,8 @@ class ApocalyptoApp::Player
         @items.select { |item| item.type == "revive" }
     end
 
-    def player_stats
-        system("clear")
-        if @health < player.country.zombies.first.damage
-            low_health
-        else
-            battle_ready
-        end
-    end
-
-    def low_health
-        oh_no
-        uh_oh
-        current_supply
-        divider
-        low_health_input
-    end
-
-    def low_health_input
-        puts "You can purchase supplies from the store or choose an easier area."
-        new_line
-        puts "Input [shop] to stock up."
-        escape
-        input = gets.strip.downcase
-        input == "shop" ? ApocalyptoApp::Supply.access_shop : current_game.list_countries
-    end
-
-    def battle_ready
-        player_char
-        current_supply
-        puts "You're ready for battle, #{self.name}! ALONZEE!"
-        fight_shop_exit
-    end
-
     def drink_revive
         @items.delete_at(self.items.index { |item| item.type == "revive" } || self.items.length)
         @health = 50
-        player_stats
-    end
-
-    def current_supply
-        puts "You currently have #{self.health} health, do #{self.damage} damage and have $#{self.money}."
-    end
-
-    def wallet
-        puts "You currently have $#{self.money}."
     end
 end
