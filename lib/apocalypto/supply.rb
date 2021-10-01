@@ -157,9 +157,4 @@ class ApocalyptoApp::Supply
     def self.processed_item_name item
         %w(a e i o u h).include?(item[0].downcase) ? "an #{item.titleize}" : "a #{item.titleize}"
     end
-
-
-    def self.player
-        ApocalyptoApp::Player.all[-1]
-    end
 end

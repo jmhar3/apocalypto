@@ -6,11 +6,11 @@ module ApocalyptoApp::Utility
         escape
         input = gets.strip.downcase
         if input == "fight"
-            ApocalyptoApp::Zombie.spawn_zombie
+            player.country.zombies.first.spawn_zombie
         elsif input == "shop"
             ApocalyptoApp::Supply.access_shop
         else
-            ApocalyptoApp::CLI.all[-1].list_countries
+            current_game.list_countries
         end
     end
 
@@ -21,6 +21,14 @@ module ApocalyptoApp::Utility
             get_user_input
         end
         input
+    end
+
+    def player
+        ApocalyptoApp::Player.all[-1]
+    end
+
+    def current_game
+        ApocalyptoApp::CLI.all[-1]
     end
 
     def escape

@@ -7,7 +7,6 @@ class ApocalyptoApp::Country
     def initialize name:, infected: 0
         @name = name
         @infected = infected
-        @zombies = []
         if name == "" || name == "^^[1]testing capacity^^" || name == "UTC"
         else
             @@all << self
@@ -18,7 +17,7 @@ class ApocalyptoApp::Country
         @@all
     end
 
-    def self.zombies
+    def zombies
         ApocalyptoApp::Zombie.all.filter do |zombie|
             zombie.country == self
         end
@@ -49,17 +48,17 @@ class ApocalyptoApp::Country
     end
 
     def no_zombie_welcome
-        puts "Welcome, #{ApocalyptoApp::Player.all[-1].name}, to the oasis we call #{name}."
+        puts "Welcome, #{player.name}, to the oasis we call #{name}."
         puts "Zombies haven't yet reached these lands."
         divider
         puts "Enter [y] to choose another country."
         escape
         input = gets.strip.downcase
-        input == "y" ?  ApocalyptoApp::CLI.all[-1].list_countries : exit
+        input == "y" ?  current_game.list_countries : exit
     end
 
     def zombie_welcome
-        puts "Welcome, #{ApocalyptoApp::Player.all[-1].name}, to the distopian future we call #{name}."
+        puts "Welcome, #{player.name}, to the distopian future we call #{name}."
         ApocalyptoApp::Zombie.total infected
         divider
         puts "Society as we know it is in shambles. Fear has taken hold of #{name}. The people are busy hiding, dying or fighting amongst themselves. You alone are left to defend and destroy."
@@ -73,6 +72,6 @@ class ApocalyptoApp::Country
         puts "Enter [begin] to prepare for battle."
         escape
         input = gets.strip.downcase
-        input == "begin" ?  ApocalyptoApp::Player.all[-1].player_stats : ApocalyptoApp::CLI.list_countries
+        input == "begin" ?  player.player_stats : current_game.list_countries
     end
 end

@@ -57,7 +57,7 @@ class ApocalyptoApp::CLI
         system("clear")
         puts "Choose a country:"
         new_line
-        country.each.with_index(1) do |country, i|
+        countries.each.with_index(1) do |country, i|
             puts "#{i}. #{country.name} - #{country.difficulty}"
         end
         prompt_area_selection 
@@ -67,11 +67,54 @@ class ApocalyptoApp::CLI
         divider
         puts "Please enter a number to make your selection."
         escape
-        input = get_num_input country.size
-        input == 0 ? exit : country[input - 1].welcome
+        input = get_num_input countries.size
+        if input == 0
+            exit
+        else
+            player.country = countries[input - 1]
+            countries[input - 1].welcome
+        end
     end
 
-    def country
+    def gameover
+        puts "GAME OVER!"
+        puts "Input [start] for a new game or any key to escape the apocalypse."
+
+        input = gets.strip.downcase
+        input == "start" ? ApocalyptoApp::CLI.new.start : exit
+    end
+
+    def gameover_revive
+        puts "You've been knocked out!"
+        divider
+        player.items.each.with_index(1) do |item, i|
+            puts "#{i}. +1 Life | #{item.value}HP - #{item.name}"
+        end
+        new_line
+        puts "Enter [revive] to drink potion."
+        puts "Input any key for a new game"
+        input = gets.strip.downcase
+        input == "revive" ? player.drink_revive : ApocalyptoApp::CLI.new.start
+    end
+
+    def add_random_drop
+        item = random_drop
+        ApocalyptoApp::Supply.gain_item_effect item
+    end
+
+    def random_drop
+        chance = rand(1..10)
+        case chance
+        when 1, 3, 8
+            ApocalyptoApp::Supply.all.select { |item| item[:type] == "health" }.sample
+        when 6
+            player.items.sample
+        when 9
+            ApocalyptoApp::Supply.all.sample
+        end
+    end
+
+    def countries
         ApocalyptoApp::Country.all
     end
 end

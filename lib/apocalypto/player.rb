@@ -1,7 +1,7 @@
 class ApocalyptoApp::Player
     include ApocalyptoApp::Utility
 
-    attr_accessor :name, :health, :money, :damage, :items
+    attr_accessor :name, :health, :money, :damage, :items, :country
 
     @@all = []
 
@@ -47,7 +47,7 @@ class ApocalyptoApp::Player
         puts "Input [shop] to stock up."
         escape
         input = gets.strip.downcase
-        input == "shop" ? ApocalyptoApp::Supply.access_shop : exit
+        input == "shop" ? ApocalyptoApp::Supply.access_shop : current_game.list_countries
     end
 
     def battle_ready
