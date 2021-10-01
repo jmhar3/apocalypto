@@ -19,7 +19,12 @@ class ApocalyptoApp::Player
     end
   
     def add_item item
-      @items << item
+        @items << item
+        if item.type == "damage"
+            player.damage += item.value
+        elsif item.type == "health"
+            player.health += item.value
+        end
     end
 
     def remove_item item
