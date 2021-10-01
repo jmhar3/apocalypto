@@ -117,7 +117,8 @@ class ApocalyptoApp::Supply
         if item.type == "damage"
             player.damage -= item.value
         elsif item.type == "health"
-            player.health -= item.value
+            result = player.health - item.value
+            player.health = (result <= 0 ? 0 : result)
         end
         player.money += sale_price item.cost
     end

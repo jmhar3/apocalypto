@@ -53,8 +53,7 @@ class ApocalyptoApp::Zombie
         divider
         oh_no
         puts "#{player.name}: #{player.health} health | #{player.damage} damage"
-        new_line
-        puts "Quick! Hit it with your weapon."
+        survival_rate ? uh_oh : (puts "Quick! Hit it with your weapon.")
         attack
     end
 
@@ -68,18 +67,14 @@ class ApocalyptoApp::Zombie
 
     def hit
         system("clear")
-        zombie_damage
+        result = self.health - player.damage
+        self.health = (result <= 0 ? 0 : result)
         if self.health > 0
             survive_zombie
             player_hit
         else
             defeat_zombie
         end
-    end
-
-    def zombie_damage
-        damaged = self.health - player.damage
-        self.health = (damaged < 0 ? 0 : damaged)
     end
 
     def defeat_zombie
@@ -93,8 +88,8 @@ class ApocalyptoApp::Zombie
     end
 
     def survive_zombie
-        damage = player.health - self.damage
-        player.health = (damage < 0 ? 0 : damage)
+        result = player.health - self.damage
+        player.health = (result <= 0 ? 0 : result)
         hit_zombie
         puts "Zombie took #{player.damage} damage. #{self.health} health remaining."
         puts "Zombie used bite. It was very effective."
@@ -105,7 +100,7 @@ class ApocalyptoApp::Zombie
     def player_hit
         if player.health > 0
             puts "You took #{self.damage} damage. #{player.health} health remaining."
-            uh_oh if player.health < self.damage && self.health > player.damage
+            uh_oh if survival_rate
             attack
         else
             if player.revive.size == 0
@@ -114,5 +109,9 @@ class ApocalyptoApp::Zombie
                 current_game.gameover_revive
             end
         end
+    end
+
+    def survival_rate
+        player.health < self.damage && self.health > player.damage
     end
 end

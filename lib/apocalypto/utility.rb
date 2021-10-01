@@ -48,6 +48,7 @@ module ApocalyptoApp::Utility
     end
 
     def uh_oh
+        new_line
         puts "Uh oh - looks like you're low on health."
     end
     

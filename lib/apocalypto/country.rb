@@ -67,7 +67,9 @@ class ApocalyptoApp::Country
 
     def zombie_welcome_prompt
         new_line
-        puts "Kill zombies to earn currency so you can gear up in preparation for the super zombies!"
+        puts "You're armed with nothing but a kitchen knife."
+        puts "Kill zombies and gear up in preparation for the super zombies!"
+        puts "If you run low on life consume items to heal."
         new_line
         puts "Enter [begin] to prepare for battle."
         escape

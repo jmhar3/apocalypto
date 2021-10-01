@@ -37,7 +37,7 @@ class ApocalyptoApp::Player
 
     def player_stats
         system("clear")
-        if @health < 30
+        if @health < player.country.zombies.first.damage
             low_health
         else
             battle_ready
@@ -49,6 +49,12 @@ class ApocalyptoApp::Player
         uh_oh
         current_supply
         divider
+        low_health_input
+    end
+
+    def low_health_input
+        puts "You can purchase supplies from the store or choose an easier area."
+        new_line
         puts "Input [shop] to stock up."
         escape
         input = gets.strip.downcase
