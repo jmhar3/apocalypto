@@ -31,6 +31,10 @@ module ApocalyptoApp::Utility
         ApocalyptoApp::CLI.all[-1]
     end
 
+    def all_supplies
+        ApocalyptoApp::Supply.all
+    end
+
     def escape
         puts "Enter any key to choose a new area."
     end

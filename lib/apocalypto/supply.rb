@@ -24,7 +24,7 @@ class ApocalyptoApp::Supply
         system("clear")
         puts "Ye Olde Wares"
         new_line
-        puts "Stock up on the finest wares or sell your goods to make some extra gold"
+        puts "Stock up on the finest of wares or sell your goods to make some extra gold"
         divider
         access_shop_input
     end

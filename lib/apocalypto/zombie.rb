@@ -25,12 +25,12 @@ class ApocalyptoApp::Zombie
     end
 
     def self.zombie_by_difficulty i, difficulty
-        ten = ((i % 10) == 0)
+        ten = ((i % 10) == 0 && i != 1)
         case difficulty
         when "childs play"
             ten ? self.new(id: i, health: 50, damage: 10, money: 50) : self.new(id: i)
         when "easy"
-            ten ? self.new(id: i, health: 100, damage: 40, money: 150) : self.new(id: i, health: 50, damage: 20, money: 50)
+            ten ? self.new(id: i, health: 1, damage: 40, money: 150) : self.new(id: i, health: 50, damage: 20, money: 50)
         when "medium"
             ten ? self.new(id: i, health: 300, damage: 80, money: 500) : self.new(id: i, health: 100, damage: 40, money: 150)
         when "hard"
@@ -84,10 +84,11 @@ class ApocalyptoApp::Zombie
 
     def defeat_zombie
         player.money += self.money
-        add_random_drop
-        player.country.zombies.shift
+        current_game.add_random_drop
+        new_line
         dead_zombie
         puts "Congrats! You defeated the zombie and gained $#{self.money}."
+        self.class.all.delete_if { |z| z == self }
         fight_shop_exit
     end
 
