@@ -86,6 +86,7 @@ class ApocalyptoApp::Zombie
 
     def self.defeat_zombie
         player.money += all[-1].money
+        add_random_drop
         all.pop
         # REMOVE 1 INFECTED FROM COUNTRY
         dead_zombie
@@ -133,6 +134,24 @@ class ApocalyptoApp::Zombie
         puts "Input [run] to run away."
         input = gets.strip.downcase
         input == "hit" ? hit : player.player_stats
+    end
+
+    def self.add_random_drop
+        item = random_drop
+        ApocalyptoApp::Supply.gain_item_effect item
+    end
+
+
+    def self.random_drop
+        chance = rand(1..10)
+        case chance
+        when 1, 3, 8
+            ApocalyptoApp::Supply.all.select { |item| item[:value] < 50 }.sample
+        when 6
+            player.items.sample
+        when 9
+            ApocalyptoApp::Supply.all.sample
+        end
     end
 
     def self.player

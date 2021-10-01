@@ -137,21 +137,21 @@ class ApocalyptoApp::Supply
     end
 
     def self.successful_purchase item
-        purchase_item_effect item
-        player.money -= item.cost
         system("clear")
-        puts "Congratulation! You are the proud new owner of #{processed_item_name item.name}."
+        gain_item_effect item
+        player.money -= item.cost
         player.current_supply
         fight_shop_exit
     end
 
-    def self.purchase_item_effect item
+    def self.gain_item_effect item
         player.add_item item
         if item.type == "damage"
             player.damage += item.value
         elsif item.type == "health"
             player.health += item.value
         end
+        puts "Congratulation! You are the proud new owner of #{ApocalyptoApp::Supply.processed_item_name item.name}."
     end
 
     def self.processed_item_name item
