@@ -94,13 +94,16 @@ class ApocalyptoApp::CLI
 
     def gameover_revive
         puts "You've been knocked out!"
+        new_line
         divider
-        player.items.each.with_index(1) do |item, i|
-            puts "#{i}. +1 Life | #{item.value}HP - #{item.name}"
-        end
+        puts "+1 Life | 50HP - Resurrection Potion"
+        prompt_revive_selection
+    end
+
+    def prompt_revive_selection
         new_line
         puts "Enter [revive] to drink potion."
-        puts "Input any key for a new game"
+        puts "Input any key for a new game."
         input = gets.strip.downcase
         input == "revive" ? player.drink_revive : ApocalyptoApp::CLI.new.start
     end
@@ -117,9 +120,5 @@ class ApocalyptoApp::CLI
         when 9
             ApocalyptoApp::Supply.all.sample
         end
-    end
-
-    def countries
-        ApocalyptoApp::Country.all
     end
 end

@@ -32,7 +32,7 @@ class ApocalyptoApp::Player
     end
 
     def revive
-        @items.select { |item| item[:type] == "revive" }
+        @items.select { |item| item.type == "revive" }
     end
 
     def player_stats
@@ -63,7 +63,7 @@ class ApocalyptoApp::Player
     end
 
     def drink_revive
-        @revive -= 1
+        @items.delete_at(self.items.index { |item| item.type == "revive" } || self.items.length)
         @health = 50
         player_stats
     end

@@ -65,11 +65,11 @@ class ApocalyptoApp::Supply
         divider
     end
 
-    def self.prompt_item_selection item, market
+    def self.prompt_item_selection items, market
         puts "Enter a number to learn more."
         puts "Input any key to prepare for battle."
-        input = get_num_input(item.size)
-        input == 0 ? player.player_stats : view_item(item[input - 1], market)
+        input = get_num_input(items.size)
+        input == 0 ? player.player_stats : view_item(items[input - 1], market)
     end
 
     def self.view_item item, market

@@ -108,7 +108,7 @@ class ApocalyptoApp::Zombie
             uh_oh if player.health < self.damage && self.health > player.damage
             attack
         else
-            if player.revive == 0
+            if player.revive.size == 0
                 current_game.gameover
             else
                 current_game.gameover_revive

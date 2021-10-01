@@ -35,6 +35,10 @@ module ApocalyptoApp::Utility
         ApocalyptoApp::Supply.all
     end
 
+    def countries
+        ApocalyptoApp::Country.all
+    end
+
     def escape
         puts "Enter any key to choose a new area."
     end
