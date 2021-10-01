@@ -15,7 +15,6 @@ class ApocalyptoApp::Scraper
     def get_countries
         system("clear")
         puts "Download game data..."
-
         doc = get_page COVID_URL
         countries = doc.css('table#thetable tr').map do |country|
             print "‿︵"
@@ -23,7 +22,6 @@ class ApocalyptoApp::Scraper
             infected = country.css('td:nth-child(2) span').text.strip
             {name: name, infected: infected}
         end
-
         make_countries countries
     end
 
@@ -38,7 +36,6 @@ class ApocalyptoApp::Scraper
             desc =  get_weapon_desc url
             {name: name, value: value[0..-2], type: "damage", cost: value, desc: desc}
         end
-
         make_supplies weapons
     end
 

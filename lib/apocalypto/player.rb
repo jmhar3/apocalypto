@@ -1,18 +1,16 @@
 class ApocalyptoApp::Player
     include ApocalyptoApp::Utility
 
-    attr_accessor :name, :health, :money, :damage, :revive
+    attr_accessor :name, :health, :money, :damage, :items
 
     @@all = []
 
-    def initialize name:, health: 50, money: 500, damage: 9, revive: 1
+    def initialize name:, health: 50, money: 500, damage: 9
         @name = name
         @health = health
         @damage = damage
         @money = money
-        @revive = revive
         @items = []
-
         @@all << self
     end
 
@@ -22,6 +20,14 @@ class ApocalyptoApp::Player
   
     def add_item item
       @items << item
+    end
+
+    def remove_item item
+        @items.delete_if { |i| i == item }
+    end
+
+    def revive
+        @items.select { |item| item[:type] == "revive" }
     end
 
     def player_stats

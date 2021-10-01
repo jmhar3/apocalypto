@@ -8,7 +8,6 @@ class ApocalyptoApp::Country
         @name = name
         @infected = infected
         @zombies = []
-
         if name == "" || name == "^^[1]testing capacity^^" || name == "UTC"
         else
             @@all << self
@@ -64,6 +63,10 @@ class ApocalyptoApp::Country
         ApocalyptoApp::Zombie.total infected
         divider
         puts "Society as we know it is in shambles. Fear has taken hold of #{name}. The people are busy hiding, dying or fighting amongst themselves. You alone are left to defend and destroy."
+        zombie_welcome_prompt
+    end
+
+    def zombie_welcome_prompt
         new_line
         puts "Kill zombies to earn currency so you can gear up in preparation for the super zombies!"
         new_line

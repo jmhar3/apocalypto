@@ -14,8 +14,21 @@ module ApocalyptoApp::Utility
         end
     end
 
+    def get_num_input comparison
+        input = gets.strip.to_i
+        if input > comparison
+            puts "Invalid selection. Please input a valid number."
+            get_user_input
+        end
+        input
+    end
+
     def escape
         puts "Enter any key to choose a new area."
+    end
+
+    def prepare_for_battle
+        puts "Enter any key to prepare for battle."
     end
 
     def uh_oh

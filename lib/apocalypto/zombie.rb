@@ -116,9 +116,13 @@ class ApocalyptoApp::Zombie
     def self.gameover_revive
         dazed
         puts "You've been knocked out!"
+        divider
+        player.items.each.with_index(1) do |item, i|
+            puts "#{i}. +1 Life | #{item.value}HP - #{item.name}"
+        end
+        new_line
         puts "Enter [revive] to drink potion."
         puts "Input any key for a new game"
-                
         input = gets.strip.downcase
         input == "revive" ? player.drink_revive : ApocalyptoApp::CLI.new.start
     end
