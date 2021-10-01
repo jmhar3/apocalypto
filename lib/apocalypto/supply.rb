@@ -45,28 +45,27 @@ class ApocalyptoApp::Supply
     def self.sell_items
         system("clear")
         puts "Care to sell your wares?"
-        stock_inventory player.items
+        stock_inventory player.items, "sell"
         prompt_item_selection(player.items, "sell")
     end
 
     def self.buy_items 
         system("clear")
         puts "Stock up on supplies:"
-        stock_inventory all
+        stock_inventory all, "buy"
         player.wallet
         prompt_item_selection(all, "buy")
     end
-
-    def self.stock_inventory items
+    
+    def self.stock_inventory items, market
         new_line
-        items.each.with_index(1) do |supply, i|
-            puts "#{i}. $#{supply.cost} - #{supply.name}"
+        items.each.with_index(1) do |item, i|
+            puts "#{i}. $"+(market == "buy" ? "#{item.cost}" : "#{sale_price item.cost}")+" - #{item.name}"
         end
         divider
     end
 
     def self.prompt_item_selection item, market
-        new_line
         puts "Enter a number to learn more."
         puts "Input any key to prepare for battle."
         input = get_num_input(item.size)
@@ -146,11 +145,6 @@ class ApocalyptoApp::Supply
 
     def self.gain_item_effect item
         player.add_item item
-        if item.type == "damage"
-            player.damage += item.value
-        elsif item.type == "health"
-            player.health += item.value
-        end
         puts "Congratulation! You are the proud new owner of #{ApocalyptoApp::Supply.processed_item_name item.name}."
     end
 
