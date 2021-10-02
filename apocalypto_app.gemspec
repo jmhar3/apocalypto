@@ -6,10 +6,17 @@ Gem::Specification.new do |s|
     s.authors     = ["Jessica Hackerman"]
     s.email       = 'jmhar@protonmail.com'
     s.files       = [
-      "lib/supplies.rb",
-      "lib/scraper.rb"
+        "lib/CLI/cli.rb",
+        "lib/CLI/fight.rb",
+        "lib/CLI/shop.rb",
+        "lib/supply.rb",
+        "lib/scraper.rb",
+        "lib/utility.rb",
+        "lib/player.rb",
+        "lib/zombie.rb",
+        "lib/country.rb"
     ]
     s.homepage    =
-      'https://rubygems.org/gems/apocalypto'
+        'https://rubygems.org/gems/apocalypto'
     s.license       = 'MIT'
   end
