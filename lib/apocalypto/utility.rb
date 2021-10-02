@@ -65,7 +65,7 @@ module ApocalyptoApp::Utility
     end
 
     def player_char
-        puts "(ಸ‿ಸ)"
+        puts "(・̆‿・̆)"
         new_line
     end
 
