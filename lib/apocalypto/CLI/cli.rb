@@ -4,8 +4,7 @@ class ApocalyptoApp::CLI
     @@all = []
 
     def initialize
-        starter_health
-        starter_damage
+        starter_supplies.each {|supply| ApocalyptoApp::Supply.new supply}
         ApocalyptoApp::Scraper.new.get_countries
         ApocalyptoApp::Scraper.new.get_weapons
         @@all << self
@@ -14,27 +13,9 @@ class ApocalyptoApp::CLI
     def self.all
         @@all
     end
-    
-    # DRY THIS OUT | CREATE MULTIPLE INSTANCES AT ONCE?
 
-    def starter_health
-        ApocalyptoApp::Supply.new name: "Resurrection Potion", type: "revive", value: 50, cost: "800", desc: "A mystical potion to bring you back from the depths of hell."
-        ApocalyptoApp::Supply.new name: "Aerosol Deoderant", type: "health", value: 20, cost: "40", desc: "Freshness in a can."
-        ApocalyptoApp::Supply.new name: "Coke", type: "health", value: 15, cost: "30", desc: "Post-apocalyptic fuel."
-        ApocalyptoApp::Supply.new name: "Red Bull", type: "health", value: 20, cost: "40", desc: "Gamer fuel."
-        ApocalyptoApp::Supply.new name: "Canned Beans", type: "health", value: 30, cost: "60", desc: "Warning: Do not eat in confined space with others."
-        ApocalyptoApp::Supply.new name: "Jerky", type: "health", value: 40, cost: "80", desc: "Unknown animal origin."
-        ApocalyptoApp::Supply.new name: "SPAM", type: "health", value: 45, cost: "90", desc: "A canned delicacy in this new age."
-        ApocalyptoApp::Supply.new name: "Canned Tuna", type: "health", value: 60, cost: "120", desc: "A canned delicacy in this new age."
-        ApocalyptoApp::Supply.new name: "Skag BBQ", type: "health", value: 90, cost: "180", desc: "An unrecognisable, disgusting hunk of flesh burnt to a crisp."
-    end
-
-    def starter_damage
-        ApocalyptoApp::Supply.new name: "Crowbar", type: "damage", value: 60, cost: "600",
-            desc: "The Swissarmy knife of the apocalypse. A must have."
-        ApocalyptoApp::Supply.new name: "Zippo", type: "damage", value: 30, cost: "300",
-            desc: "Caution: Dangerous near flammable objects."
-        ApocalyptoApp::Supply.new name: "Kitchen Knife", type: "damage", value: 15, cost: "150", desc: "Common kitchen tool."
+    def starter_supplies
+        [{name: "Resurrection Potion", type: "revive", value: 50, cost: "800", desc: "A mystical potion to bring you back from the depths of hell."}, {name: "Aerosol Deoderant", type: "health", value: 20, cost: "40", desc: "Freshness in a can."}, {name: "Coke", type: "health", value: 15, cost: "30", desc: "Post-apocalyptic fuel."}, {name: "Red Bull", type: "health", value: 20, cost: "40", desc: "Gamer fuel."}, {name: "Canned Beans", type: "health", value: 30, cost: "60", desc: "Warning: Do not consume when trapped in a confined space."}, {name: "Jerky", type: "health", value: 40, cost: "80", desc: "Unknown animal origin."}, {name: "SPAM", type: "health", value: 45, cost: "90", desc: "A canned delicacy in this new age."}, {name: "Canned Tuna", type: "health", value: 60, cost: "120", desc: "A canned delicacy in this new age."}, {name: "Skag BBQ", type: "health", value: 90, cost: "180", desc: "An unrecognisable, disgusting hunk of flesh burnt to a crisp."}, {name: "Crowbar", type: "damage", value: 60, cost: "600", desc: "The Swissarmy knife of the apocalypse. A must have."}, {name: "Zippo", type: "damage", value: 30, cost: "300", desc: "Caution: Dangerous near flammable objects."}, {name: "Kitchen Knife", type: "damage", value: 15, cost: "150", desc: "Common kitchen tool."}]
     end
 
     def start
