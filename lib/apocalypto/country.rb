@@ -5,12 +5,9 @@ class ApocalyptoApp::Country
     def initialize name:, infected: 0
         @name = name
         @infected = infected
-        if name == "" || name == "^^[1]testing capacity^^" || name == "UTC"
-        else
-            @@all << self
-        end
+        @@all << self unless name == "" || name == "^^[1]testing capacity^^" || name == "UTC"
     end
-
+    
     def self.all
         @@all
     end

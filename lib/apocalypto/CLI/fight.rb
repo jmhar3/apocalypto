@@ -79,11 +79,7 @@ class ApocalyptoApp::Fight
             uh_oh if survival_rate
             attack
         else
-            if player.revive.size == 0
-                gameover
-            else
-                gameover_revive
-            end
+            player.revive.size == 0 ? gameover : gameover_revive
         end
     end
 

@@ -118,11 +118,7 @@ class ApocalyptoApp::CLI
 
     def player_stats
         system("clear")
-        if player.health < player.country.zombies.first.damage
-            low_health
-        else
-            battle_ready
-        end
+        player.health < player.country.zombies.first.damage ? :low_health : battle_ready
     end
 
     def low_health
@@ -155,9 +151,10 @@ class ApocalyptoApp::CLI
         puts "Enter [shop] to peruse the wares."
         escape
         input = gets.strip.downcase
-        if input == "fight"
+        case input
+        when "fight"
             ApocalyptoApp::Fight.spawn_zombie
-        elsif input == "shop"
+        when "shop"
             ApocalyptoApp::Shop.access_shop
         else
             list_countries
