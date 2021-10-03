@@ -51,7 +51,7 @@ class ApocalyptoApp::Fight
 
     def self.add_random_drop
         item = random_drop
-        gain_item_effect item if item != nil
+        ApocalyptoApp::Shop.gain_item_effect item if item != nil
     end
 
     def self.random_drop
