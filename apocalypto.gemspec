@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
     s.name        = 'Apocalypto'
     s.version     = '0.0.0'
-    s.summary     = "A survival app"
-    s.description = "Escape the apocalypse with supplies from Walmart"
+    s.summary     = "A survival game"
+    s.description = "Survive the apocalypse with supplies from the shop while taking down zombies. Gear up to work your way to more difficult areas."
     s.authors     = ["Jessica Hackerman"]
     s.email       = 'jmhar@protonmail.com'
     s.files       = [

@@ -3,86 +3,32 @@ A zombie survival game.
 
 Survive the apocalypse with supplies from the shop while taking down zombies. Gear up to work your way to more difficult areas.
 
-## Getting Started
+## Installation
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Add this line to your application's Gemfile:
 
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
+```ruby
+gem 'apocalypto'
 ```
 
-### Installing
+And then execute:
 
-A step by step series of examples that tell you how to get a development env running
+    $ bundle install
 
-Say what the step will be
+Or install it yourself as:
 
-```
-Give the example
-```
+    $ gem install apocalypto
 
-And repeat
+## Development
 
-```
-until finished
-```
+After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Bug reports and pull requests are welcome on GitHub at https://github.com/jmhar3/apocalypto. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/jmhar3/apocalypto/blob/master/CODE_OF_CONDUCT.md).
 
-## Versioning
+## Code of Conduct
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+Everyone interacting in the CourseApp project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/jmhar3/apocalypto/blob/master/CODE_OF_CONDUCT.md).
