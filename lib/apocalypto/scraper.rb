@@ -4,7 +4,6 @@ require 'nokogiri'
 
 class ApocalyptoApp::Scraper
     COVID_URL = "https://en.wikipedia.org/wiki/Template:COVID-19_pandemic_data/Per_capita"
-    # FOOD_URL = ""
     WEAPONS_URL = "https://shootersdelight.com.au/product-category/online-gun-store/"
 
     def get_page url

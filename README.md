@@ -3,6 +3,11 @@ A zombie survival game.
 
 Survive the apocalypse with supplies from the shop while taking down zombies. Gear up to work your way to more difficult areas.
 
+# Apocalypto
+A zombie survival game.
+
+Survive the apocalypse with supplies from the shop while taking down zombies. Gear up to work your way to more difficult areas.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -32,3 +37,16 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/jmhar3
 ## Code of Conduct
 
 Everyone interacting in the CourseApp project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/jmhar3/apocalypto/blob/master/CODE_OF_CONDUCT.md).
+
+## Authors
+
+- [jmhar](https://github.com/jmhar3)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* [Wikipedia](https://en.wikipedia.org/wiki/Template:COVID-19_pandemic_data/Per_capita) - Country and zombie data
+* [Shooters Delight](https://shootersdelight.com.au/product-category/online-gun-store/) - Gun data
