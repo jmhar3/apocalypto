@@ -64,6 +64,7 @@ class ApocalyptoApp::CLI
             exit
         else
             player.country = countries[input - 1]
+            ApocalyptoApp::Zombie.generate_zombies player.country
             welcome player.country
         end
     end

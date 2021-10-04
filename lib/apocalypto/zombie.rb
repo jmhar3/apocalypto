@@ -18,7 +18,9 @@ class ApocalyptoApp::Zombie
     end
 
     def self.generate_zombies country
+        "Loading Zombies..."
         country.infected.split(",").join.to_i.times do |i|
+            print "‿︵"
             zombie = zombie_by_difficulty(i, country.difficulty)
             zombie.country = country
         end
