@@ -147,17 +147,17 @@ class ApocalyptoApp::CLI
 
     def fight_shop_exit
         divider
-        puts "Enter [fight] to kill zombies"
+        puts "Press [Enter] to kill zombies"
         puts "Enter [shop] to peruse the wares."
-        escape
+        puts "Enter [list] to select a new area."
         input = gets.strip.downcase
         case input
-        when "fight"
-            ApocalyptoApp::Fight.spawn_zombie
+        when "list"
+            list_countries
         when "shop"
             ApocalyptoApp::Shop.access_shop
         else
-            list_countries
+            ApocalyptoApp::Fight.spawn_zombie
         end
     end
 end
