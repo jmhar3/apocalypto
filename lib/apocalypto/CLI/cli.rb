@@ -1,9 +1,11 @@
 class ApocalyptoApp::CLI
     include ApocalyptoApp::Utility
+    attr_accessor :countries_page
 
     @@all = []
 
     def initialize
+        @countries_page = 1
         starter_supplies.each {|supply| ApocalyptoApp::Supply.new supply}
         ApocalyptoApp::Scraper.new.get_countries
         ApocalyptoApp::Scraper.new.get_weapons
@@ -45,11 +47,12 @@ class ApocalyptoApp::CLI
         starter_items.each { |item| player.add_item item }
     end
 
-    def list_countries
+    def list_countries 
         system("clear")
         puts "Choose a country:"
         new_line
-        countries.each.with_index(1) do |country, i|
+        starting_num = (countries_page - 1) * 10
+        countries.slice(starting_num, 10).each.with_index(starting_num + 1) do |country, i|
             puts "#{i}. #{country.name} - #{country.difficulty}"
         end
         prompt_area_selection 
@@ -57,20 +60,40 @@ class ApocalyptoApp::CLI
 
     def prompt_area_selection
         divider
+        puts "Input #{pagination} to view more countries."
         puts "Please enter a number to make your selection."
         puts "Input any key to escape the apocalypse."
-        input = get_num_input countries.size
-        if input == 0
+        input = gets.strip.downcase
+        if (input == "n" && @countries_page != 22) || (input == "p" && @countries_page != 1)
+            input == "n" ? @countries_page += 1 : @countries_page -= 1
+            list_countries
+        else
+            country_selection input.to_i
+        end
+    end
+
+    def pagination
+        if @countries_page == 1
+            "[n]"
+        elsif @countries_page == 22
+            "[p]"
+        else
+            "[p] or [n]"
+        end
+    end
+
+    def country_selection input
+        num = get_num_input countries.size, input
+        if num == 0
             exit
         else
-            player.country = countries[input - 1]
+            player.country = countries[num - 1]
             ApocalyptoApp::Zombie.generate_zombies player.country
             welcome player.country
         end
     end
 
-    def get_num_input comparison
-        input = gets.strip.to_i
+    def get_num_input comparison, input = gets.strip.to_i
         if input > comparison
             puts "Invalid selection. Please input a valid number."
             get_user_input

@@ -1,7 +1,3 @@
-require_relative '../apocalypto_app.rb'
-require 'open-uri'
-require 'nokogiri'
-
 class ApocalyptoApp::Scraper
     COVID_URL = "https://en.wikipedia.org/wiki/Template:COVID-19_pandemic_data/Per_capita"
     WEAPONS_URL = "https://shootersdelight.com.au/product-category/online-gun-store/"
@@ -26,7 +22,6 @@ class ApocalyptoApp::Scraper
 
     def get_weapons
         doc = get_page WEAPONS_URL
-        # binding.pry
         weapons = doc.css('li.product').map do |weapon|
             print "‿︵"
             name = weapon.css('h2.woocommerce-loop-product__title').text.strip
